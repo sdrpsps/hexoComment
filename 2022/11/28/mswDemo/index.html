@@ -1,0 +1,671 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="hchow">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="本次 Demo 仓库地址 https:&#x2F;&#x2F;github.com&#x2F;sdrpsps&#x2F;mswDemo  Install 安装Let’s start by installing the msw package into our project. Run the following command in your project’s root directory: 安装依赖包 12345npm insta">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue3 + Vite + TypeScript 的 Mock Service Worker 使用">
+<meta property="og:url" content="https://hchow.fun/2022/11/28/mswDemo/index.html">
+<meta property="og:site_name" content="周生&#39;s Blog">
+<meta property="og:description" content="本次 Demo 仓库地址 https:&#x2F;&#x2F;github.com&#x2F;sdrpsps&#x2F;mswDemo  Install 安装Let’s start by installing the msw package into our project. Run the following command in your project’s root directory: 安装依赖包 12345npm insta">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-11-28T01:45:19.000Z">
+<meta property="article:modified_time" content="2023-01-06T06:01:35.699Z">
+<meta property="article:author" content="hchow">
+<meta property="article:tag" content="教程">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Vue3 + Vite + TypeScript 的 Mock Service Worker 使用 - 周生&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"hchow.fun","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>周生&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Vue3 + Vite + TypeScript 的 Mock Service Worker 使用"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-11-28 09:45" pubdate>
+          2022年11月28日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.9k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Vue3 + Vite + TypeScript 的 Mock Service Worker 使用</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：15 分钟前
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>本次 Demo 仓库地址 <a target="_blank" rel="noopener" href="https://github.com/sdrpsps/mswDemo">https://github.com/sdrpsps/mswDemo</a></p>
+</blockquote>
+<h2 id="Install-安装"><a href="#Install-安装" class="headerlink" title="Install 安装"></a>Install 安装</h2><p>Let’s start by installing the msw package into our project.</p>
+<p>Run the following command in your project’s root directory:</p>
+<p>安装依赖包</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">npm install msw --save-dev<br><span class="hljs-meta prompt_"># </span><span class="language-bash">or</span><br>yarn add msw --dev<br><span class="hljs-meta prompt_"># </span><span class="language-bash">or</span><br>pnpm install msw -D<br></code></pre></td></tr></table></figure>
+
+<h2 id="Mocking-REST-API"><a href="#Mocking-REST-API" class="headerlink" title="Mocking REST API"></a>Mocking REST API</h2><h3 id="Imports-引入"><a href="#Imports-引入" class="headerlink" title="Imports 引入"></a>Imports 引入</h3><p>In our <code>src/mock/handlers.ts</code> file let’s import the essentials we need for mocking a REST API. They are grouped under the rest namespace exposed by the library.</p>
+<p>新建 <code>src/mock/handlers.ts</code> 文件</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">// src/mocks/handlers.ts</span><br><span class="hljs-keyword">import</span> &#123; rest &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;msw&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="Request-handler-amp-Response-resolver-请求和相应"><a href="#Request-handler-amp-Response-resolver-请求和相应" class="headerlink" title="Request handler &amp; Response resolver 请求和相应"></a>Request handler &amp; Response resolver 请求和相应</h3><p>Response resolver is a function that accepts the following arguments:</p>
+<p><code>req</code> , an information about a matching request; 请求信息<br><code>res</code> , a functional utility to create the mocked response; 返回信息<br><code>ctx</code> , a group of functions that help to set a status code, headers, body, etc. of the mocked response. 上下文</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">import</span> &#123; rest &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;msw&quot;</span>;<br><br><span class="hljs-keyword">const</span> articles = [<br>  &#123;<br>    <span class="hljs-attr">id</span>: <span class="hljs-number">1</span>,<br>    <span class="hljs-attr">title</span>: <span class="hljs-string">&quot;Node.js 日志最佳实践指南&quot;</span>,<br>    <span class="hljs-attr">content</span>:<br>      <span class="hljs-string">&quot;在开发阶段，无论是日志记录还是调试，都可以很容易地跟踪程序并检测到错误。但是在生产环境中，应该考虑更多关于日志记录的问题，因为这对于应用程序的监视和故障排除非常关键。&quot;</span>,<br>    <span class="hljs-attr">url</span>: <span class="hljs-string">&quot;https://juejin.cn/post/7017811851345920037&quot;</span>,<br>  &#125;,<br>  &#123;<br>    <span class="hljs-attr">id</span>: <span class="hljs-number">2</span>,<br>    <span class="hljs-attr">title</span>: <span class="hljs-string">&quot;NodeJs 全栈创建多文件断点续传&quot;</span>,<br>    <span class="hljs-attr">content</span>:<br>      <span class="hljs-string">&quot;文件上传，算是项目开发中比较常见的需求，本文将展示如何构建一个多文件断点续传组件，可以同时处理多个文件，并可以在出现异常或者网络中断的情况下恢复上传，可以手动暂停和恢复文件的上传。文章内容涉及前端和后端，算是一个小型的全栈项目，项目将使用 NodeJs、Express、Busboy 和 XMLHttpRequest，并使用自己开发的脚手架 generator-norm 来构建项目。&quot;</span>,<br>    <span class="hljs-attr">url</span>: <span class="hljs-string">&quot;https://juejin.cn/post/7015935144007729189&quot;</span>,<br>  &#125;,<br>  &#123;<br>    <span class="hljs-attr">id</span>: <span class="hljs-number">3</span>,<br>    <span class="hljs-attr">title</span>: <span class="hljs-string">&quot;Node.js 日志之winston使用指南&quot;</span>,<br>    <span class="hljs-attr">content</span>:<br>      <span class="hljs-string">&quot;Winston 是强大、灵活的 Node.js 开源日志库之一，理论上， Winston 是一个可以记录所有信息的记录器。这是一个高度直观的工具，易于定制。&quot;</span>,<br>    <span class="hljs-attr">url</span>: <span class="hljs-string">&quot;https://juejin.cn/post/7018169629176496158&quot;</span>,<br>  &#125;,<br>];<br><span class="hljs-keyword">const</span> user = &#123;<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;admin&quot;</span>,<br>  <span class="hljs-attr">password</span>: <span class="hljs-string">&quot;12345&quot;</span>,<br>  <span class="hljs-attr">token</span>: <span class="hljs-string">&quot;token&quot;</span>,<br>&#125;;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> handlers = [<br>  rest.<span class="hljs-title function_">get</span>(<span class="hljs-string">`/api/article/:id`</span>, <span class="hljs-function">(<span class="hljs-params">req, res, ctx</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">const</span> &#123; id &#125; = req.<span class="hljs-property">params</span>;<br>    <span class="hljs-keyword">const</span> data = articles.<span class="hljs-title function_">find</span>(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> item.<span class="hljs-property">id</span> === <span class="hljs-built_in">parseInt</span>(id <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>, <span class="hljs-number">10</span>));<br>    <span class="hljs-keyword">if</span> (data) &#123;<br>      <span class="hljs-keyword">return</span> <span class="hljs-title function_">res</span>(ctx.<span class="hljs-title function_">status</span>(<span class="hljs-number">200</span>), ctx.<span class="hljs-title function_">json</span>(data));<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      <span class="hljs-keyword">return</span> <span class="hljs-title function_">res</span>(ctx.<span class="hljs-title function_">status</span>(<span class="hljs-number">500</span>));<br>    &#125;<br>  &#125;),<br>  rest.<span class="hljs-title function_">post</span>(<span class="hljs-string">`/api/login`</span>, <span class="hljs-function">(<span class="hljs-params">req, res, ctx</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">const</span> data = user;<br>    <span class="hljs-keyword">return</span> <span class="hljs-title function_">res</span>(ctx.<span class="hljs-title function_">status</span>(<span class="hljs-number">200</span>), ctx.<span class="hljs-title function_">json</span>(data));<br>  &#125;),<br>];<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> defaultHandlers = [];<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="Integrate-Browser-整合到浏览器"><a href="#Integrate-Browser-整合到浏览器" class="headerlink" title="Integrate Browser 整合到浏览器"></a>Integrate Browser 整合到浏览器</h3><p>Execute the init command of the Mock Service Worker CLI: 初始化 Worker 到 <code>puilb</code> 目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">npx msw init public/ --save<br></code></pre></td></tr></table></figure>
+
+<h3 id="Configure-worker-配置-Worker"><a href="#Configure-worker-配置-Worker" class="headerlink" title="Configure worker 配置 Worker"></a>Configure worker 配置 Worker</h3><p>Let’s create a file in our mock definition directory (<code>src/mocks</code>) where we would configure and start our Service Worker.</p>
+<p>Create a <code>src/mocks/browser.ts</code> file:</p>
+<p>创建 <code>src/mocks/browser.ts</code> 文件</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">import</span> &#123; setupWorker &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;msw&quot;</span>;<br><span class="hljs-keyword">import</span> &#123; handlers, defaultHandlers &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./handler&quot;</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> mocker = <span class="hljs-title function_">setupWorker</span>(...handlers, ...defaultHandlers);<br></code></pre></td></tr></table></figure>
+
+<h3 id="Start-worker-启动-Worker"><a href="#Start-worker-启动-Worker" class="headerlink" title="Start worker 启动 Worker"></a>Start worker 启动 Worker</h3><p>在 <code>main.ts</code> 添加即可使用</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">// ...</span><br><span class="hljs-keyword">import</span> &#123; mocker &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./mocks/browser&quot;</span>;<br><span class="hljs-comment">// ...</span><br><br><span class="hljs-keyword">if</span> (<span class="hljs-keyword">import</span>.<span class="hljs-property">meta</span>.<span class="hljs-property">env</span>.<span class="hljs-property">MODE</span> === <span class="hljs-string">&quot;development&quot;</span>) &#123;<br>  mocker.<span class="hljs-title function_">start</span>(&#123;<br>    <span class="hljs-comment">// 对于没有 mock 的接口直接通过，避免异常</span><br>    <span class="hljs-attr">onUnhandledRequest</span>: <span class="hljs-string">&quot;bypass&quot;</span>,<br>  &#125;);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="自用-Axios-封装"><a href="#自用-Axios-封装" class="headerlink" title="自用 Axios 封装"></a>自用 Axios 封装</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">// src/utils/request.ts</span><br><br><span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;axios&quot;</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-keyword">type</span> &#123;<br>  <span class="hljs-title class_">AxiosInstance</span>,<br>  <span class="hljs-title class_">AxiosError</span>,<br>  <span class="hljs-title class_">AxiosRequestConfig</span>,<br>  <span class="hljs-title class_">AxiosResponse</span>,<br>&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;axios&quot;</span>;<br><br><br><span class="hljs-keyword">const</span> <span class="hljs-attr">service</span>: <span class="hljs-title class_">AxiosInstance</span> = axios.<span class="hljs-title function_">create</span>(&#123;<br>  <span class="hljs-attr">baseURL</span>: <span class="hljs-keyword">import</span>.<span class="hljs-property">meta</span>.<span class="hljs-property">env</span>.<span class="hljs-property">VITE_BASE_API</span>,<br>  <span class="hljs-attr">timeout</span>: <span class="hljs-number">5000</span>,<br>&#125;);<br><br><span class="hljs-comment">/* 请求拦截器 */</span><br>service.<span class="hljs-property">interceptors</span>.<span class="hljs-property">request</span>.<span class="hljs-title function_">use</span>(<br>  <span class="hljs-function">(<span class="hljs-params">config: AxiosRequestConfig</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">return</span> config;<br>  &#125;,<br>  <span class="hljs-function">(<span class="hljs-params">error: AxiosError</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(error);<br>  &#125;<br>);<br><br><span class="hljs-comment">/* 响应拦截器 */</span><br>service.<span class="hljs-property">interceptors</span>.<span class="hljs-property">response</span>.<span class="hljs-title function_">use</span>(<br>  <span class="hljs-function">(<span class="hljs-params">response: AxiosResponse</span>) =&gt;</span> &#123;<br>    <span class="hljs-comment">// 根据自定义错误码判断请求是否成功</span><br><br>    <span class="hljs-comment">// 将组件用的数据返回</span><br>    <span class="hljs-keyword">return</span> response.<span class="hljs-property">data</span>;<br>  &#125;,<br>  <span class="hljs-function">(<span class="hljs-params">error: AxiosError</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(error);<br>  &#125;<br>);<br><br><span class="hljs-comment">/* 导出封装的请求方法 */</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> http = &#123;<br>  get&lt;T = <span class="hljs-built_in">any</span>&gt;(<span class="hljs-attr">url</span>: <span class="hljs-built_in">string</span>, config?: <span class="hljs-title class_">AxiosRequestConfig</span>): <span class="hljs-title class_">Promise</span>&lt;T&gt; &#123;<br>    <span class="hljs-keyword">return</span> service.<span class="hljs-title function_">get</span>(url, config);<br>  &#125;,<br><br>  post&lt;T = <span class="hljs-built_in">any</span>&gt;(<br>    <span class="hljs-attr">url</span>: <span class="hljs-built_in">string</span>,<br>    data?: <span class="hljs-built_in">object</span>,<br>    config?: <span class="hljs-title class_">AxiosRequestConfig</span><br>  ): <span class="hljs-title class_">Promise</span>&lt;T&gt; &#123;<br>    <span class="hljs-keyword">return</span> service.<span class="hljs-title function_">post</span>(url, data, config);<br>  &#125;,<br><br>  put&lt;T = <span class="hljs-built_in">any</span>&gt;(<br>    <span class="hljs-attr">url</span>: <span class="hljs-built_in">string</span>,<br>    data?: <span class="hljs-built_in">object</span>,<br>    config?: <span class="hljs-title class_">AxiosRequestConfig</span><br>  ): <span class="hljs-title class_">Promise</span>&lt;T&gt; &#123;<br>    <span class="hljs-keyword">return</span> service.<span class="hljs-title function_">put</span>(url, data, config);<br>  &#125;,<br><br>  <span class="hljs-keyword">delete</span>&lt;T = <span class="hljs-built_in">any</span>&gt;(<span class="hljs-attr">url</span>: <span class="hljs-built_in">string</span>, config?: <span class="hljs-title class_">AxiosRequestConfig</span>): <span class="hljs-title class_">Promise</span>&lt;T&gt; &#123;<br>    <span class="hljs-keyword">return</span> service.<span class="hljs-title function_">delete</span>(url, config);<br>  &#125;,<br>&#125;;<br><br><span class="hljs-comment">/* 导出 axios 实例 */</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> service;<br><br></code></pre></td></tr></table></figure>
+
+<h2 id="Axios-调用"><a href="#Axios-调用" class="headerlink" title="Axios 调用"></a>Axios 调用</h2><h3 id="请求方法"><a href="#请求方法" class="headerlink" title="请求方法"></a>请求方法</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">// src/api/index.ts</span><br><br><span class="hljs-keyword">import</span> &#123; http &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@/utils/request&quot;</span>;<br><span class="hljs-keyword">import</span> &#123; articleData, articleRes, loginRes &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./types&quot;</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">getArticle</span>(<span class="hljs-params">id: articleData</span>) &#123;<br>  <span class="hljs-keyword">return</span> http.<span class="hljs-property">get</span>&lt;articleRes&gt;(<span class="hljs-string">`/article/<span class="hljs-subst">$&#123;id&#125;</span>`</span>);<br>&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">login</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">return</span> http.<span class="hljs-property">post</span>&lt;loginRes&gt;(<span class="hljs-string">`/login`</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="类型定义"><a href="#类型定义" class="headerlink" title="类型定义"></a>类型定义</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">// src/api/types.ts</span><br><br><span class="hljs-comment">/* 文章列表请求参数 */</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> articleData &#123;<br>  <span class="hljs-attr">id</span>: <span class="hljs-built_in">number</span>;<br>&#125;<br><span class="hljs-comment">/* 文章列表结果 */</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> articleRes &#123;<br>  <span class="hljs-attr">id</span>: <span class="hljs-built_in">number</span>;<br>  <span class="hljs-attr">title</span>: <span class="hljs-built_in">string</span>;<br>  <span class="hljs-attr">content</span>: <span class="hljs-built_in">string</span>;<br>  <span class="hljs-attr">url</span>: <span class="hljs-built_in">string</span>;<br>&#125;<br><span class="hljs-comment">/* 登陆结果 */</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> loginRes &#123;<br>    <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>;<br>    <span class="hljs-attr">password</span>: <span class="hljs-built_in">string</span>;<br>    <span class="hljs-attr">token</span>: <span class="hljs-built_in">string</span>;<br>  &#125;<br><br></code></pre></td></tr></table></figure>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%99%E7%A8%8B/">#教程</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Vue3 + Vite + TypeScript 的 Mock Service Worker 使用</div>
+      <div>https://hchow.fun/2022/11/28/mswDemo/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>hchow</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年11月28日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/10/12/nest-blog-learning/" title="Nest.JS 博客后端学习记录">
+                        <span class="hidden-mobile">Nest.JS 博客后端学习记录</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"6ee781411c4c57dc0fb1","clientSecret":"7566b4496981ee7cc707c4bb8b387b538aede35e","repo":"hexoComment","owner":"sdrpsps","admin":["sdrpsps"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: 'b736df528a69e1498947604c06dc23d1'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

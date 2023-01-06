@@ -1,0 +1,1066 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="hchow">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="身为一名前端，除了要本职工作外，还要懂得后端知识。不然在国内如此卷的环境中，迟早被后浪拍死在沙滩上。 本篇文章尝试记录我自己构建基于 Nest.JS 博客后端的过程，也是学习的过程，希望能够坚持下去～">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nest.JS 博客后端学习记录">
+<meta property="og:url" content="https://hchow.fun/2022/10/12/nest-blog-learning/index.html">
+<meta property="og:site_name" content="周生&#39;s Blog">
+<meta property="og:description" content="身为一名前端，除了要本职工作外，还要懂得后端知识。不然在国内如此卷的环境中，迟早被后浪拍死在沙滩上。 本篇文章尝试记录我自己构建基于 Nest.JS 博客后端的过程，也是学习的过程，希望能够坚持下去～">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.imgur.com/lKzUclt.png">
+<meta property="og:image" content="https://i.imgur.com/sb5I6nZ.png">
+<meta property="og:image" content="https://i.imgur.com/6isSQhV.png">
+<meta property="og:image" content="https://i.imgur.com/8N0vQ0U.png">
+<meta property="og:image" content="https://i.imgur.com/CwJT6Wz.png">
+<meta property="og:image" content="https://i.imgur.com/lTRUASB.png">
+<meta property="og:image" content="https://i.imgur.com/FpxKVGp.png">
+<meta property="og:image" content="https://i.imgur.com/0IuiTQt.png">
+<meta property="og:image" content="https://i.imgur.com/TP9bTrV.png">
+<meta property="og:image" content="https://i.imgur.com/0b9VXR5.png">
+<meta property="og:image" content="https://i.imgur.com/PQRJxS4.png">
+<meta property="og:image" content="https://i.imgur.com/jP4lK4H.png">
+<meta property="og:image" content="https://i.imgur.com/oeHQa49.png">
+<meta property="og:image" content="https://i.imgur.com/KXmsDOP.png">
+<meta property="og:image" content="https://i.imgur.com/f2IzjJz.png">
+<meta property="og:image" content="https://i.imgur.com/Mmx2shB.png">
+<meta property="og:image" content="https://i.imgur.com/2mmUROf.png">
+<meta property="og:image" content="https://i.imgur.com/S8Xq4ai.png">
+<meta property="og:image" content="https://i.imgur.com/z0pNYRL.png">
+<meta property="og:image" content="https://i.imgur.com/2g16WdK.png">
+<meta property="og:image" content="https://i.imgur.com/ra6glKG.png">
+<meta property="og:image" content="https://i.imgur.com/x2nDMXV.png">
+<meta property="og:image" content="https://i.imgur.com/EdT3Pju.png">
+<meta property="og:image" content="https://i.imgur.com/jdgNOKB.png">
+<meta property="og:image" content="https://i.imgur.com/zLh4Mgs.png">
+<meta property="og:image" content="https://i.imgur.com/f4nxCh2.png">
+<meta property="og:image" content="https://i.imgur.com/UptbGRI.png">
+<meta property="og:image" content="https://i.imgur.com/rv47BAd.png">
+<meta property="og:image" content="https://i.imgur.com/ayLllK2.png">
+<meta property="og:image" content="https://i.imgur.com/zArESKM.png">
+<meta property="og:image" content="https://i.imgur.com/vNZYZ0k.png">
+<meta property="og:image" content="https://i.imgur.com/gNlkpQK.png">
+<meta property="og:image" content="https://i.imgur.com/rzTjhUz.png">
+<meta property="og:image" content="https://i.imgur.com/KRfxX2m.png">
+<meta property="og:image" content="https://i.imgur.com/E7RF5vQ.png">
+<meta property="article:published_time" content="2022-10-12T09:43:03.000Z">
+<meta property="article:modified_time" content="2023-01-06T06:01:35.699Z">
+<meta property="article:author" content="hchow">
+<meta property="article:tag" content="学习">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i.imgur.com/lKzUclt.png">
+  
+  
+  
+  <title>Nest.JS 博客后端学习记录 - 周生&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"hchow.fun","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>周生&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Nest.JS 博客后端学习记录"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-10-12 17:43" pubdate>
+          2022年10月12日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          27k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Nest.JS 博客后端学习记录</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：15 分钟前
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>身为一名前端，除了要本职工作外，还要懂得后端知识。不然在国内如此卷的环境中，迟早被后浪拍死在沙滩上。</p>
+<p>本篇文章尝试记录我自己构建基于 Nest.JS 博客后端的过程，也是学习的过程，希望能够坚持下去～</p>
+</blockquote>
+<span id="more"></span>
+
+<h2 id="〇、项目代码同步更新仓库"><a href="#〇、项目代码同步更新仓库" class="headerlink" title="〇、项目代码同步更新仓库"></a>〇、<a target="_blank" rel="noopener" href="https://github.com/sdrpsps/nest-blog">项目代码同步更新仓库</a></h2><h2 id="一、准备工作"><a href="#一、准备工作" class="headerlink" title="一、准备工作"></a>一、准备工作</h2><ol>
+<li><h3 id="安装官方脚手架"><a href="#安装官方脚手架" class="headerlink" title="安装官方脚手架"></a>安装官方脚手架</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">pnpm add -g @nestjs/cli<br></code></pre></td></tr></table></figure>
+
+
+</li>
+<li><h3 id="项目依赖"><a href="#项目依赖" class="headerlink" title="项目依赖"></a>项目依赖</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">pnpm add prisma-binding @prisma/client mockjs @nestjs/config class-validator class-transformer argon2 @nestjs/passport passport passport-local @nestjs/jwt passport-jwt lodash multer dayjs express redis @nestjs/throttler<br><br>pnpm add -D prisma typescript @types/node @types/mockjs @nestjs/mapped-types @types/passport-local @types/passport-jwt @types/express @types/lodash @types/multer @types/node<br></code></pre></td></tr></table></figure>
+
+
+</li>
+<li><h3 id="安装-VSCode-插件"><a href="#安装-VSCode-插件" class="headerlink" title="安装 VSCode 插件"></a>安装 VSCode 插件</h3><ol>
+<li><h4 id="Prisma"><a href="#Prisma" class="headerlink" title="Prisma"></a><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=Prisma.prisma">Prisma</a></h4></li>
+<li><h4 id="Prettier"><a href="#Prettier" class="headerlink" title="Prettier"></a><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode">Prettier</a></h4></li>
+</ol>
+</li>
+<li><h3 id="代码格式化配置-prettierrc-文件"><a href="#代码格式化配置-prettierrc-文件" class="headerlink" title="代码格式化配置 ( .prettierrc 文件 )"></a>代码格式化配置 ( <code>.prettierrc</code> 文件 )</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;arrowParens&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;always&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;bracketSameLine&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;bracketSpacing&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;embeddedLanguageFormatting&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;auto&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;htmlWhitespaceSensitivity&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;css&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;insertPragma&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;jsxSingleQuote&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;printWidth&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">120</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;proseWrap&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;never&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;quoteProps&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;as-needed&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;requirePragma&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;semi&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;singleQuote&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;tabWidth&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">2</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;trailingComma&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;all&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;useTabs&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;vueIndentScriptAndStyle&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;singleAttributePerLine&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="二、项目初始化"><a href="#二、项目初始化" class="headerlink" title="二、项目初始化"></a>二、项目初始化</h2><ol>
+<li><h3 id="使用脚手架-new-一个新项目"><a href="#使用脚手架-new-一个新项目" class="headerlink" title="使用脚手架 new 一个新项目"></a>使用脚手架 new 一个新项目</h3>   <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">nest new nest-blog<br></code></pre></td></tr></table></figure>
+</li>
+<li><h3 id="安装依赖包"><a href="#安装依赖包" class="headerlink" title="安装依赖包"></a>安装依赖包</h3></li>
+<li><h3 id="初始化-Prisma"><a href="#初始化-Prisma" class="headerlink" title="初始化 Prisma"></a>初始化 <a target="_blank" rel="noopener" href="https://www.prisma.io/docs/concepts/overview/what-is-prisma">Prisma</a></h3><ol>
+<li><h4 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">npx prisma init<br></code></pre></td></tr></table></figure></li>
+<li><h4 id="在-env-文件中定义数据库账号密码和地址"><a href="#在-env-文件中定义数据库账号密码和地址" class="headerlink" title="在 .env 文件中定义数据库账号密码和地址"></a>在 <code>.env</code> 文件中定义数据库账号密码和地址</h4><ol>
+<li><h5 id="如果是本地开发数据库，只需填写-DATABASE-URL-即可"><a href="#如果是本地开发数据库，只需填写-DATABASE-URL-即可" class="headerlink" title="如果是本地开发数据库，只需填写 DATABASE_URL 即可"></a>如果是本地开发数据库，只需填写 <code>DATABASE_URL</code> 即可</h5>   <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">DATABASE_URL=&quot;mysql://账号:密码@服务器:端口/表名&quot;<br></code></pre></td></tr></table></figure>
+</li>
+<li><h5 id="如果是云端服务器数据库，需要填写-SHADOWS-DATABASE-URL"><a href="#如果是云端服务器数据库，需要填写-SHADOWS-DATABASE-URL" class="headerlink" title="如果是云端服务器数据库，需要填写 SHADOWS_DATABASE_URL"></a>如果是云端服务器数据库，需要填写 <code>SHADOWS_DATABASE_URL</code></h5>   <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">DATABASE_URL=mysql://账号:密码@服务器:端口/表名&quot;<br>SHADOW_DATABASE_URL=&quot;mysql://账号:密码@服务器:端口/表名&quot;<br></code></pre></td></tr></table></figure>
+</li>
+<li><h5 id="在-package-json-文件中定义数据自动填充-scripts-上面"><a href="#在-package-json-文件中定义数据自动填充-scripts-上面" class="headerlink" title="在 package.json 文件中定义数据自动填充 (scripts 上面 )"></a>在 <code>package.json</code> 文件中定义数据自动填充 (scripts 上面 )</h5><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-attr">&quot;prisma&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;seed&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;ts-node prisma/seed.ts&quot;</span><br>  <span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><h3 id="创建数据库模型-prisma-schema-prisma-文件"><a href="#创建数据库模型-prisma-schema-prisma-文件" class="headerlink" title="创建数据库模型 prisma/schema.prisma 文件"></a>创建数据库模型 <code>prisma/schema.prisma</code> 文件</h3><ol>
+<li><h4 id="修改-Prisma-默认数据库类型"><a href="#修改-Prisma-默认数据库类型" class="headerlink" title="修改 Prisma 默认数据库类型"></a>修改 Prisma 默认数据库类型</h4>   <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs text">datasource db &#123;<br>  provider = &quot;mysql&quot;<br>  url      = env(&quot;DATABASE_URL&quot;)<br>	// 如果是云端服务器数据库，需要加上shadowDatabaseUrl<br>  shadowDatabaseUrl = env(&quot;SHADOW_DATABASE_URL&quot;)<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><h4 id="创建用户表和文章模型-表"><a href="#创建用户表和文章模型-表" class="headerlink" title="创建用户表和文章模型(表)"></a>创建用户表和文章模型(表)</h4>   <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs text">model user &#123;<br>  id       Int    @id @default(autoincrement()) @db.UnsignedInt<br>  name     String @unique<br>  password String<br>&#125;<br><br>model article &#123;<br>  id      Int    @id @default(autoincrement()) @db.UnsignedInt<br>  title   String<br>  content String @db.Text<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><h3 id="生成-Prisma-迁移文件"><a href="#生成-Prisma-迁移文件" class="headerlink" title="生成 Prisma 迁移文件"></a>生成 Prisma <a target="_blank" rel="noopener" href="https://www.prisma.io/docs/concepts/components/prisma-migrate/migration-histories">迁移文件</a></h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">npx prisma migrate dev<br></code></pre></td></tr></table></figure></li>
+<li><h3 id="输入迁移文件名称"><a href="#输入迁移文件名称" class="headerlink" title="输入迁移文件名称"></a>输入迁移文件名称</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs shell">Environment variables loaded from .env<br>Prisma schema loaded from prisma/schema.prisma<br>Datasource &quot;db&quot;: MySQL database &quot;blog&quot; at &quot;x.x.x.x:3306&quot;<br><br>✔ Enter a name for the new migration: … init<br>Applying migration `20221013023738_init`<br><br>The following migration(s) have been created and applied from new schema changes:<br><br>migrations/<br>  └─ 20221013023738_init/<br>   └─ migration.sql<br>   <br>Your database is now in sync with your schema.<br></code></pre></td></tr></table></figure>
+</li>
+<li><h3 id="生成成功后，数据库上就会自动生成对应的表和字段"><a href="#生成成功后，数据库上就会自动生成对应的表和字段" class="headerlink" title="生成成功后，数据库上就会自动生成对应的表和字段"></a>生成成功后，数据库上就会自动生成对应的表和字段</h3><ol>
+<li><h4 id="数据表"><a href="#数据表" class="headerlink" title="数据表"></a>数据表<img src="https://i.imgur.com/lKzUclt.png" srcset="/img/loading.gif" lazyload></h4></li>
+<li><h4 id="字段"><a href="#字段" class="headerlink" title="字段"></a>字段<img src="https://i.imgur.com/sb5I6nZ.png" srcset="/img/loading.gif" lazyload alt="image-20221013104628314"></h4></li>
+</ol>
+</li>
+<li><h3 id="写入自动填充数据，在-prsima-seed-ts"><a href="#写入自动填充数据，在-prsima-seed-ts" class="headerlink" title="写入自动填充数据，在 prsima/seed.ts"></a>写入自动填充数据，在 <code>prsima/seed.ts</code></h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">PrismaClient</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@prisma/client&#x27;</span><br><span class="hljs-keyword">import</span> &#123; hash &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;argon2&#x27;</span><br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">Random</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;mockjs&#x27;</span><br><br><span class="hljs-keyword">const</span> prisma = <span class="hljs-keyword">new</span> <span class="hljs-title class_">PrismaClient</span>()<br><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">run</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">await</span> prisma.<span class="hljs-property">user</span>.<span class="hljs-title function_">create</span>(&#123;<br>        <span class="hljs-attr">data</span>: &#123;<br>            <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;admin&#x27;</span>,<br>            <span class="hljs-attr">password</span>: <span class="hljs-keyword">await</span> <span class="hljs-title function_">hash</span>(<span class="hljs-string">&#x27;123456&#x27;</span>)<br>        &#125;<br>    &#125;)<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">50</span>; i++) &#123;<br>        <span class="hljs-keyword">await</span> prisma.<span class="hljs-property">article</span>.<span class="hljs-title function_">create</span>(&#123;<br>            <span class="hljs-attr">data</span>: &#123;<br>                <span class="hljs-attr">title</span>: <span class="hljs-title class_">Random</span>.<span class="hljs-title function_">ctitle</span>(<span class="hljs-number">10</span>, <span class="hljs-number">30</span>),<br>                <span class="hljs-attr">content</span>: <span class="hljs-title class_">Random</span>.<span class="hljs-title function_">cparagraph</span>(<span class="hljs-number">30</span>, <span class="hljs-number">40</span>)<br>            &#125;<br>        &#125;)<br>    &#125;<br>&#125;<br><br><span class="hljs-title function_">run</span>()<br></code></pre></td></tr></table></figure>
+
+
+</li>
+<li><h3 id="重新运行迁移文件，该操作会清除原始数据"><a href="#重新运行迁移文件，该操作会清除原始数据" class="headerlink" title="重新运行迁移文件，该操作会清除原始数据"></a>重新运行迁移文件，该操作会清除原始数据</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">npx prisma migrate reset<br></code></pre></td></tr></table></figure>
+</li>
+<li><h3 id="确认操作"><a href="#确认操作" class="headerlink" title="确认操作"></a>确认操作</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs shell">Environment variables loaded from .env<br>Prisma schema loaded from prisma/schema.prisma<br>Datasource &quot;db&quot;: MySQL database &quot;blog&quot; at &quot;x.x.x.x:3306&quot;<br><br>✔ Are you sure you want to reset your database? All data will be lost. … yes<br><br>Applying migration `20221013023738_init`<br><br>Database reset successful<br><br>The following migration(s) have been applied:<br><br>migrations/<br>  └─ 20221013023738_init/<br>    └─ migration.sql<br><br>✔ Generated Prisma Client (4.4.0 | library) to ./node_modules/.pnpm/@prisma+client@4.4.0_prisma@4.4.0/node_modules/@prisma/client in 595ms<br><br>Running seed command `ts-node prisma/seed.ts` ...<br><br>🌱  The seed command has been executed.<br></code></pre></td></tr></table></figure>
+</li>
+<li><h3 id="生成后的数据"><a href="#生成后的数据" class="headerlink" title="生成后的数据"></a>生成后的数据<img src="https://i.imgur.com/6isSQhV.png" srcset="/img/loading.gif" lazyload alt="image-20221013111542159"></h3></li>
+<li><h3 id="删除自动生成的-app-controller-ts-、-app-services-ts-和-app-controller-spec"><a href="#删除自动生成的-app-controller-ts-、-app-services-ts-和-app-controller-spec" class="headerlink" title="删除自动生成的 app.controller.ts 、 app.services.ts 和 app.controller.spec"></a>删除自动生成的 <code>app.controller.ts</code> 、 <code>app.services.ts</code> 和 <code>app.controller.spec</code></h3></li>
+<li><h3 id="app-modules-ts-删除对应的引入"><a href="#app-modules-ts-删除对应的引入" class="headerlink" title="app.modules.ts 删除对应的引入"></a><code>app.modules.ts</code> 删除对应的引入</h3></li>
+</ol>
+<h2 id="三、登录注册接口"><a href="#三、登录注册接口" class="headerlink" title="三、登录注册接口"></a>三、登录注册接口</h2><ol>
+<li><h3 id="auth-模块"><a href="#auth-模块" class="headerlink" title="auth 模块"></a>auth 模块</h3><ol>
+<li><h4 id="创建模块"><a href="#创建模块" class="headerlink" title="创建模块"></a>创建<a target="_blank" rel="noopener" href="https://docs.nestjs.com/modules">模块</a></h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">nest g mo auth --no-spec<br></code></pre></td></tr></table></figure>
+</li>
+<li><h4 id="创建控制器"><a href="#创建控制器" class="headerlink" title="创建控制器"></a>创建<a target="_blank" rel="noopener" href="https://docs.nestjs.com/controllers">控制器</a></h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">nest g co auth --no-spec<br></code></pre></td></tr></table></figure>
+</li>
+<li><h4 id="创建服务"><a href="#创建服务" class="headerlink" title="创建服务"></a>创建<a target="_blank" rel="noopener" href="https://docs.nestjs.com/providers#services">服务</a></h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">nest g s auth --no-spec<br></code></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><h3 id="创建路由"><a href="#创建路由" class="headerlink" title="创建路由"></a>创建<a target="_blank" rel="noopener" href="https://docs.nestjs.com/controllers#routing">路由</a></h3><p><code>auth.controller.ts</code></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">Controller</span>, <span class="hljs-title class_">Post</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@nestjs/common&#x27;</span>;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">AuthService</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./auth.service&#x27;</span>;<br><br><span class="hljs-meta">@Controller</span>(<span class="hljs-string">&#x27;auth&#x27;</span>)<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">AuthController</span> &#123;<br>    <span class="hljs-title function_">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> auth: AuthService</span>) &#123;<br><br>    &#125;<br><br>    <span class="hljs-meta">@Post</span>(<span class="hljs-string">&#x27;register&#x27;</span>)<br>    <span class="hljs-title function_">register</span>(<span class="hljs-params"></span>) &#123;<br><br>    &#125;<br><br>    <span class="hljs-meta">@Post</span>(<span class="hljs-string">&#x27;login&#x27;</span>)<br>    <span class="hljs-title function_">login</span>(<span class="hljs-params"></span>) &#123;<br><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><h3 id="创建-DTO"><a href="#创建-DTO" class="headerlink" title="创建 DTO"></a>创建 <a target="_blank" rel="noopener" href="https://docs.nestjs.com/controllers#request-payloads">DTO</a></h3><ol>
+<li><p>在 auth 文件夹下创建 dto 文件夹</p>
+</li>
+<li><p>新建 <code>register.dto.ts</code> 和 <code>login.dto.ts</code> 文件</p>
+</li>
+<li><p><code>register.dto.ts</code></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">IsNotEmpty</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;class-validator&quot;</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">RegisterDto</span> &#123;<br>    <span class="hljs-meta">@IsNotEmpty</span>(&#123; <span class="hljs-attr">message</span>: <span class="hljs-string">&quot;用户名不能为空&quot;</span> &#125;)<br>    <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span><br><br>    <span class="hljs-meta">@IsNotEmpty</span>(&#123; <span class="hljs-attr">message</span>: <span class="hljs-string">&quot;密码不能为空&quot;</span> &#125;)<br>    <span class="hljs-attr">password</span>: <span class="hljs-built_in">string</span><br><br>    <span class="hljs-meta">@IsNotEmpty</span>(&#123; <span class="hljs-attr">message</span>: <span class="hljs-string">&quot;确认密码不能为空&quot;</span> &#125;)<br>    <span class="hljs-attr">password_confirm</span>: <span class="hljs-built_in">string</span><br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li><p><code>login.dto.ts</code></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">IsNotEmpty</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;class-validator&quot;</span><br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">LoginDto</span> &#123;<br>    <span class="hljs-meta">@IsNotEmpty</span>(&#123; <span class="hljs-attr">message</span>: <span class="hljs-string">&quot;用户名不能为空&quot;</span> &#125;)<br>    <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span><br><br>    <span class="hljs-meta">@IsNotEmpty</span>(&#123; <span class="hljs-attr">message</span>: <span class="hljs-string">&quot;密码不能为空&quot;</span> &#125;)<br>    <span class="hljs-attr">password</span>: <span class="hljs-built_in">string</span><br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><h3 id="配置-DTO"><a href="#配置-DTO" class="headerlink" title="配置 DTO"></a>配置 DTO</h3><p><code>auth.controller.ts</code></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">Body</span>, <span class="hljs-title class_">Controller</span>, <span class="hljs-title class_">Post</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@nestjs/common&#x27;</span>;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">AuthService</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./auth.service&#x27;</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-title class_">LoginDto</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./dto/login.dto&#x27;</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-title class_">RegisterDto</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./dto/register.dto&#x27;</span>;<br><br><span class="hljs-meta">@Controller</span>(<span class="hljs-string">&#x27;auth&#x27;</span>)<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">AuthController</span> &#123;<br>    <span class="hljs-title function_">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> auth: AuthService</span>) &#123;<br><br>    &#125;<br><br>    <span class="hljs-meta">@Post</span>(<span class="hljs-string">&#x27;register&#x27;</span>)<br>    <span class="hljs-title function_">register</span>(<span class="hljs-params"><span class="hljs-meta">@Body</span>() dto: RegisterDto</span>) &#123;<br>        <span class="hljs-keyword">return</span> dto<br>    &#125;<br><br>    <span class="hljs-meta">@Post</span>(<span class="hljs-string">&#x27;login&#x27;</span>)<br>    <span class="hljs-title function_">login</span>(<span class="hljs-params"><span class="hljs-meta">@Body</span>() dto: LoginDto</span>) &#123;<br>        <span class="hljs-keyword">return</span> dto<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><h3 id="创建自定义验证类"><a href="#创建自定义验证类" class="headerlink" title="创建自定义验证类"></a>创建自定义验证类</h3><p>新建 <code>common/validate.ts</code> 文件</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">ValidationPipe</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@nestjs/common&quot;</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Validate</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">ValidationPipe</span> &#123;&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><h3 id="配置全局管道"><a href="#配置全局管道" class="headerlink" title="配置全局管道"></a>配置全局管道</h3><p><code>main.ts</code></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">NestFactory</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@nestjs/core&#x27;</span>;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">AppModule</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./app.module&#x27;</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-title class_">Validate</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./common/validate&#x27;</span>;<br><br><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">bootstrap</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">await</span> <span class="hljs-title class_">NestFactory</span>.<span class="hljs-title function_">create</span>(<span class="hljs-title class_">AppModule</span>);<br>  <span class="hljs-comment">// 验证传入的参数是否符合条件</span><br>  app.<span class="hljs-title function_">useGlobalPipes</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Validate</span>())<br>  <span class="hljs-keyword">await</span> app.<span class="hljs-title function_">listen</span>(<span class="hljs-number">3000</span>);<br>&#125;<br><span class="hljs-title function_">bootstrap</span>();<br></code></pre></td></tr></table></figure>
+
+</li>
+<li><h3 id="接口测试"><a href="#接口测试" class="headerlink" title="接口测试"></a>接口测试</h3><ol>
+<li><h4 id="登录接口-login"><a href="#登录接口-login" class="headerlink" title="登录接口  /login"></a>登录接口  <code>/login</code></h4><ol>
+<li><h5 id="正确情况"><a href="#正确情况" class="headerlink" title="正确情况"></a>正确情况<img src="https://i.imgur.com/8N0vQ0U.png" srcset="/img/loading.gif" lazyload alt="image-20221013135613093"></h5></li>
+<li><h5 id="异常情况"><a href="#异常情况" class="headerlink" title="异常情况"></a>异常情况<img src="https://i.imgur.com/CwJT6Wz.png" srcset="/img/loading.gif" lazyload alt="image-20221013135632909"></h5></li>
+</ol>
+</li>
+<li><h4 id="注册接口-register"><a href="#注册接口-register" class="headerlink" title="注册接口 /register"></a>注册接口 <code>/register</code></h4><ol>
+<li><h5 id="正确情况-1"><a href="#正确情况-1" class="headerlink" title="正确情况"></a>正确情况<img src="https://i.imgur.com/lTRUASB.png" srcset="/img/loading.gif" lazyload alt="image-20221013135402998"></h5></li>
+<li><h5 id="异常情况-1"><a href="#异常情况-1" class="headerlink" title="异常情况"></a>异常情况<img src="https://i.imgur.com/FpxKVGp.png" srcset="/img/loading.gif" lazyload alt="image-20221013135322867"></h5></li>
+</ol>
+</li>
+<li><h3 id="如果以上跟我显示的一样，恭喜你上线了两个简单的接口了-虽然还没做更多的验证功能"><a href="#如果以上跟我显示的一样，恭喜你上线了两个简单的接口了-虽然还没做更多的验证功能" class="headerlink" title="如果以上跟我显示的一样，恭喜你上线了两个简单的接口了 ( 虽然还没做更多的验证功能 )"></a>如果以上跟我显示的一样，恭喜你上线了两个简单的接口了 ( 虽然还没做更多的验证功能 )</h3></li>
+</ol>
+</li>
+</ol>
+<h2 id="四、自定义表单验证类"><a href="#四、自定义表单验证类" class="headerlink" title="四、自定义表单验证类"></a>四、<a target="_blank" rel="noopener" href="https://github.com/typestack/class-validator#custom-validation-decorators">自定义表单验证类</a></h2><ol>
+<li><h3 id="在-common-文件夹下创建-rules-文件夹"><a href="#在-common-文件夹下创建-rules-文件夹" class="headerlink" title="在 common 文件夹下创建 rules 文件夹"></a>在 <code>common</code> 文件夹下创建 <code>rules</code> 文件夹</h3></li>
+<li><h3 id="创建-IsNotExists-ts-文件实现查找数据库中是否存在用户"><a href="#创建-IsNotExists-ts-文件实现查找数据库中是否存在用户" class="headerlink" title="创建 IsNotExists.ts 文件实现查找数据库中是否存在用户"></a>创建 <code>IsNotExists.ts</code> 文件实现查找数据库中是否存在用户</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">PrismaClient</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@prisma/client&#x27;</span>;<br><span class="hljs-keyword">import</span> &#123; registerDecorator, <span class="hljs-title class_">ValidationOptions</span>, <span class="hljs-title class_">ValidationArguments</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;class-validator&#x27;</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">IsNotExists</span>(<span class="hljs-params">property: <span class="hljs-built_in">string</span>, validationOptions?: ValidationOptions</span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> (<span class="hljs-params"><span class="hljs-built_in">object</span>: <span class="hljs-built_in">Object</span>, propertyName: <span class="hljs-built_in">string</span></span>) &#123;<br>        <span class="hljs-title function_">registerDecorator</span>(&#123;<br>            <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;IsNotExists&#x27;</span>,<br>            <span class="hljs-attr">target</span>: <span class="hljs-built_in">object</span>.<span class="hljs-property">constructor</span>,<br>            <span class="hljs-attr">propertyName</span>: propertyName,<br>            <span class="hljs-attr">constraints</span>: [property],<br>            <span class="hljs-attr">options</span>: validationOptions,<br>            <span class="hljs-attr">validator</span>: &#123;<br>                <span class="hljs-keyword">async</span> <span class="hljs-title function_">validate</span>(<span class="hljs-params">value: <span class="hljs-built_in">any</span>, args: ValidationArguments</span>) &#123;<br>                    <span class="hljs-keyword">const</span> prisma = <span class="hljs-keyword">new</span> <span class="hljs-title class_">PrismaClient</span>()<br>                    <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> prisma.<span class="hljs-property">user</span>.<span class="hljs-title function_">findFirst</span>(&#123;<br>                        <span class="hljs-attr">where</span>: &#123;<br>                            <span class="hljs-attr">name</span>: value<br>                        &#125;<br>                    &#125;)<br>                    <span class="hljs-keyword">return</span> !<span class="hljs-title class_">Boolean</span>(res);<br>                &#125;,<br>            &#125;,<br>        &#125;);<br>    &#125;;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+</li>
+<li><h3 id="创建-IsConfirm-ts-文件验证确认密码是否一致"><a href="#创建-IsConfirm-ts-文件验证确认密码是否一致" class="headerlink" title="创建 IsConfirm.ts 文件验证确认密码是否一致"></a>创建 <code>IsConfirm.ts</code> 文件验证确认密码是否一致</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">import</span> &#123; registerDecorator, <span class="hljs-title class_">ValidationOptions</span>, <span class="hljs-title class_">ValidationArguments</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;class-validator&#x27;</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">IsConfirm</span>(<span class="hljs-params">validationOptions?: ValidationOptions</span>) &#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> (<span class="hljs-params"><span class="hljs-built_in">object</span>: <span class="hljs-built_in">Object</span>, propertyName: <span class="hljs-built_in">string</span></span>) &#123;<br>    <span class="hljs-title function_">registerDecorator</span>(&#123;<br>      <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;IsConfirm&#x27;</span>,<br>      <span class="hljs-attr">target</span>: <span class="hljs-built_in">object</span>.<span class="hljs-property">constructor</span>,<br>      <span class="hljs-attr">propertyName</span>: propertyName,<br>      <span class="hljs-attr">constraints</span>: [],<br>      <span class="hljs-attr">options</span>: validationOptions,<br>      <span class="hljs-attr">validator</span>: &#123;<br>        <span class="hljs-keyword">async</span> <span class="hljs-title function_">validate</span>(<span class="hljs-params">value: <span class="hljs-built_in">any</span>, args: ValidationArguments</span>) &#123;<br>          <span class="hljs-keyword">return</span> <span class="hljs-title class_">Boolean</span>(value === args.<span class="hljs-property">object</span>[args.<span class="hljs-property">property</span>])<br>        &#125;,<br>      &#125;,<br>    &#125;);<br>  &#125;;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+</li>
+<li><h3 id="在注册-DTO-中引用"><a href="#在注册-DTO-中引用" class="headerlink" title="在注册 DTO 中引用"></a>在注册 DTO 中引用</h3><p><code>register.dto.ts</code></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">IsNotEmpty</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;class-validator&quot;</span>;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">IsNotExists</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;src/common/rules/IsNotExists&quot;</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">RegisterDto</span> &#123;<br>    <span class="hljs-meta">@IsNotEmpty</span>(&#123; <span class="hljs-attr">message</span>: <span class="hljs-string">&quot;用户名不能为空&quot;</span> &#125;)<br>    <span class="hljs-meta">@IsNotExists</span>(<span class="hljs-string">&#x27;user&#x27;</span>, &#123; <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;用户已存在&#x27;</span> &#125;)<br>    <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span><br><br>    <span class="hljs-meta">@IsNotEmpty</span>(&#123; <span class="hljs-attr">message</span>: <span class="hljs-string">&quot;密码不能为空&quot;</span> &#125;)<br>    <span class="hljs-attr">password</span>: <span class="hljs-built_in">string</span><br><br>    <span class="hljs-meta">@IsNotEmpty</span>(&#123; <span class="hljs-attr">message</span>: <span class="hljs-string">&quot;确认密码不能为空&quot;</span> &#125;)<br>    <span class="hljs-meta">@IsConfirm</span>(&#123; <span class="hljs-attr">message</span>: <span class="hljs-string">&quot;两次密码不一致&quot;</span> &#125;)<br>    <span class="hljs-attr">password_confirm</span>: <span class="hljs-built_in">string</span><br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><h3 id="自定义管道返回错误信息"><a href="#自定义管道返回错误信息" class="headerlink" title="自定义管道返回错误信息"></a>自定义管道返回错误信息</h3><p><code>common/validate.ts</code></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">HttpException</span>, <span class="hljs-title class_">HttpStatus</span>, <span class="hljs-title class_">ValidationError</span>, <span class="hljs-title class_">ValidationPipe</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@nestjs/common&quot;</span>;<br><br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Validate</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">ValidationPipe</span> &#123;<br>    <span class="hljs-keyword">protected</span> <span class="hljs-title function_">flattenValidationErrors</span>(<span class="hljs-attr">validationErrors</span>: <span class="hljs-title class_">ValidationError</span>[]): <span class="hljs-built_in">string</span>[] &#123;<br>        <span class="hljs-keyword">const</span> message = &#123;&#125;<br>        validationErrors.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">error</span>) =&gt;</span> &#123;<br>            message[error.<span class="hljs-property">property</span>] = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">values</span>(error.<span class="hljs-property">constraints</span>)[<span class="hljs-number">0</span>]<br>        &#125;)<br><br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">HttpException</span>(&#123;<br>            <span class="hljs-attr">success</span>: <span class="hljs-literal">false</span>,<br>            <span class="hljs-attr">code</span>: <span class="hljs-number">422</span>,<br>            message<br>        &#125;,<br>            <span class="hljs-title class_">HttpStatus</span>.<span class="hljs-property">UNPROCESSABLE_ENTITY</span>)<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><h3 id="接口测试-1"><a href="#接口测试-1" class="headerlink" title="接口测试"></a>接口测试</h3><p><img src="https://i.imgur.com/0IuiTQt.png" srcset="/img/loading.gif" lazyload alt="image-20221013160602109"></p>
+<p><img src="https://i.imgur.com/TP9bTrV.png" srcset="/img/loading.gif" lazyload alt="image-20221013160630385"></p>
+</li>
+</ol>
+<h2 id="五、完成注册功能"><a href="#五、完成注册功能" class="headerlink" title="五、完成注册功能"></a>五、完成注册功能</h2><ol>
+<li><h4 id="创建-Prisma-模块用于写入数据库"><a href="#创建-Prisma-模块用于写入数据库" class="headerlink" title="创建 Prisma 模块用于写入数据库"></a>创建 Prisma 模块用于写入数据库</h4><ol>
+<li><h5 id="创建模块-1"><a href="#创建模块-1" class="headerlink" title="创建模块"></a>创建模块</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">nest g mo prisma --no-spec<br></code></pre></td></tr></table></figure>
+</li>
+<li><h5 id="创建服务-1"><a href="#创建服务-1" class="headerlink" title="创建服务"></a>创建服务</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">nest g s prisma --no-spec<br></code></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><h4 id="注册-Prisma-模块为全局模块"><a href="#注册-Prisma-模块为全局模块" class="headerlink" title="注册 Prisma 模块为全局模块"></a>注册 Prisma 模块为全局模块</h4><p><code>prisma.module.ts</code></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">Global</span>, <span class="hljs-title class_">Module</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@nestjs/common&#x27;</span>;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">PrismaService</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./prisma.service&#x27;</span>;<br><br><span class="hljs-meta">@Global</span>()<br><span class="hljs-meta">@Module</span>(&#123;<br>  <span class="hljs-attr">providers</span>: [<span class="hljs-title class_">PrismaService</span>],<br>  <span class="hljs-attr">exports</span>: [<span class="hljs-title class_">PrismaService</span>]<br>&#125;)<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">PrismaModule</span> &#123;&#125;<br></code></pre></td></tr></table></figure>
+
+
+</li>
+<li><h4 id="Prisma-服务继承-PrismaClient"><a href="#Prisma-服务继承-PrismaClient" class="headerlink" title="Prisma 服务继承 PrismaClient"></a>Prisma 服务继承 <code>PrismaClient</code></h4><p><code>prisma.service.ts</code></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">Injectable</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@nestjs/common&#x27;</span>;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">PrismaClient</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@prisma/client&#x27;</span>;<br><br><span class="hljs-meta">@Injectable</span>()<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">PrismaService</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">PrismaClient</span> &#123;<br>    <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-comment">// 打印执行 SQL 语句</span><br>        <span class="hljs-variable language_">super</span>(&#123; <span class="hljs-attr">log</span>: [<span class="hljs-string">&#x27;query&#x27;</span>] &#125;)<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+</li>
+<li><h4 id="Auth-服务引入-Prisma-服务并写入注册方法"><a href="#Auth-服务引入-Prisma-服务并写入注册方法" class="headerlink" title="Auth 服务引入 Prisma 服务并写入注册方法"></a>Auth 服务引入 Prisma 服务并写入注册方法</h4><p><code>auth.service.ts</code></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">Injectable</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@nestjs/common&#x27;</span>;<br><span class="hljs-keyword">import</span> &#123; hash &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;argon2&#x27;</span>;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">PrismaService</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;src/prisma/prisma.service&#x27;</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-title class_">RegisterDto</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./dto/register.dto&#x27;</span>;<br><br><span class="hljs-meta">@Injectable</span>()<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">AuthService</span> &#123;<br>    <span class="hljs-title function_">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> prisma: PrismaService</span>) &#123;<br><br>    &#125;<br>    <span class="hljs-keyword">async</span> <span class="hljs-title function_">register</span>(<span class="hljs-params">dto: RegisterDto</span>) &#123;<br>        <span class="hljs-keyword">const</span> user = <span class="hljs-keyword">await</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">prisma</span>.<span class="hljs-property">user</span>.<span class="hljs-title function_">create</span>(&#123;<br>            <span class="hljs-attr">data</span>: &#123;<br>                <span class="hljs-attr">name</span>: dto.<span class="hljs-property">name</span>,<br>                <span class="hljs-attr">password</span>: <span class="hljs-keyword">await</span> <span class="hljs-title function_">hash</span>(dto.<span class="hljs-property">password</span>)<br>            &#125;<br>        &#125;)<br><br>        <span class="hljs-keyword">const</span> res = &#123;<br>            <span class="hljs-attr">success</span>: <span class="hljs-literal">true</span>,<br>            <span class="hljs-attr">code</span>: <span class="hljs-number">201</span>,<br>            <span class="hljs-attr">message</span>: <span class="hljs-string">&quot;注册成功&quot;</span><br>        &#125;<br><br>        <span class="hljs-keyword">return</span> res<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><h4 id="Auth-控制器中的调用-Auth-服务传递注册-DTO-到注册方法"><a href="#Auth-控制器中的调用-Auth-服务传递注册-DTO-到注册方法" class="headerlink" title="Auth 控制器中的调用 Auth 服务传递注册 DTO 到注册方法"></a>Auth 控制器中的调用 Auth 服务传递注册 DTO 到注册方法</h4><p><code>auth.controller.ts</code></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">Body</span>, <span class="hljs-title class_">Controller</span>, <span class="hljs-title class_">Post</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@nestjs/common&#x27;</span>;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">AuthService</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./auth.service&#x27;</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-title class_">LoginDto</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./dto/login.dto&#x27;</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-title class_">RegisterDto</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./dto/register.dto&#x27;</span>;<br><br><span class="hljs-meta">@Controller</span>()<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">AuthController</span> &#123;<br>    <span class="hljs-title function_">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> auth: AuthService</span>) &#123;<br><br>    &#125;<br><br>    <span class="hljs-meta">@Post</span>(<span class="hljs-string">&#x27;register&#x27;</span>)<br>    <span class="hljs-title function_">register</span>(<span class="hljs-params"><span class="hljs-meta">@Body</span>() dto: RegisterDto</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">auth</span>.<span class="hljs-title function_">register</span>(dto)<br>    &#125;<br><br>    <span class="hljs-meta">@Post</span>(<span class="hljs-string">&#x27;login&#x27;</span>)<br>    <span class="hljs-title function_">login</span>(<span class="hljs-params"><span class="hljs-meta">@Body</span>() dto: LoginDto</span>) &#123;<br>        <span class="hljs-keyword">return</span> dto<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><h4 id="接口测试-2"><a href="#接口测试-2" class="headerlink" title="接口测试"></a>接口测试</h4><p><img src="https://i.imgur.com/0b9VXR5.png" srcset="/img/loading.gif" lazyload alt="image-20221013171839389"></p>
+<p>查看数据库，用户已添加</p>
+<p><img src="https://i.imgur.com/PQRJxS4.png" srcset="/img/loading.gif" lazyload alt="image-20221013171904961"></p>
+</li>
+</ol>
+<h2 id="六、Jwt-模块"><a href="#六、Jwt-模块" class="headerlink" title="六、Jwt 模块"></a>六、Jwt 模块</h2><ol>
+<li><h3 id="引用在-Auth-模块中引入并注册-JwtModule-模块"><a href="#引用在-Auth-模块中引入并注册-JwtModule-模块" class="headerlink" title="引用在 Auth 模块中引入并注册 JwtModule 模块"></a>引用在 Auth 模块中引入并注册 JwtModule 模块</h3><p><code>auth.module.ts</code></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">ConfigModule</span>, <span class="hljs-title class_">ConfigService</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@nestjs/config&#x27;</span>;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">JwtModule</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@nestjs/jwt&#x27;</span>;<br><br><span class="hljs-meta">@Module</span>(&#123;<br>  <span class="hljs-attr">imports</span>: [<span class="hljs-title class_">JwtModule</span>.<span class="hljs-title function_">registerAsync</span>(&#123;<br>    <span class="hljs-attr">imports</span>: [<span class="hljs-title class_">ConfigModule</span>],<br>    <span class="hljs-attr">inject</span>: [<span class="hljs-title class_">ConfigService</span>],<br>    <span class="hljs-attr">useFactory</span>: <span class="hljs-function">(<span class="hljs-params">config: ConfigService</span>) =&gt;</span> &#123;<br>      <span class="hljs-keyword">return</span> &#123;<br>        <span class="hljs-attr">secret</span>: config.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;TOKEN_SECRET&#x27;</span>),<br>        <span class="hljs-attr">signOptions</span>: &#123; <span class="hljs-attr">expiresIn</span>: <span class="hljs-string">&#x27;1d&#x27;</span> &#125;<br>      &#125;<br>    &#125;<br>  &#125;)],<br>  <span class="hljs-attr">controllers</span>: [<span class="hljs-title class_">AuthController</span>],<br>  <span class="hljs-attr">providers</span>: [<span class="hljs-title class_">AuthService</span>]<br>&#125;)<br></code></pre></td></tr></table></figure>
+</li>
+<li><h3 id="写入-Token-密钥"><a href="#写入-Token-密钥" class="headerlink" title="写入 Token 密钥"></a>写入 Token 密钥</h3><ol>
+<li><h4 id="因为加密-Token-需要密钥，而密钥通过-ConfigModule-模块来引入"><a href="#因为加密-Token-需要密钥，而密钥通过-ConfigModule-模块来引入" class="headerlink" title="因为加密 Token 需要密钥，而密钥通过 ConfigModule 模块来引入"></a>因为加密 Token 需要密钥，而密钥通过 ConfigModule 模块来引入</h4></li>
+<li><h4 id="在-env-文件中写入-TOKEN-SECRET-字段作为-Token-密钥"><a href="#在-env-文件中写入-TOKEN-SECRET-字段作为-Token-密钥" class="headerlink" title="在 .env 文件中写入 TOKEN_SECRET 字段作为 Token 密钥"></a>在 <code>.env</code> 文件中写入 <code>TOKEN_SECRET</code> 字段作为 Token 密钥</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">TOKEN_SECRET=&quot;你的密钥&quot;<br></code></pre></td></tr></table></figure>
+</li>
+<li><h4 id="通过-ConfigService-读取-env-文件的-TOKEN-SECRET-字段"><a href="#通过-ConfigService-读取-env-文件的-TOKEN-SECRET-字段" class="headerlink" title="通过 ConfigService 读取 .env 文件的 TOKEN_SECRET 字段"></a>通过 ConfigService 读取 <code>.env</code> 文件的 <code>TOKEN_SECRET</code> 字段</h4></li>
+</ol>
+</li>
+<li><h3 id="在-Auth-服务中引入-JwtService"><a href="#在-Auth-服务中引入-JwtService" class="headerlink" title="在 Auth 服务中引入 JwtService"></a>在 <code>Auth</code> 服务中引入 <code>JwtService</code></h3><p><code>auth.service.ts</code></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">JwtService</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@nestjs/jwt&#x27;</span>;<br><br><span class="hljs-comment">// ...</span><br><span class="hljs-title function_">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> prisma: PrismaService, <span class="hljs-keyword">private</span> jwt: JwtService</span>) &#123;<br><br>    &#125;<br><span class="hljs-comment">// ...</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><h3 id="在-Auth-服务中写入生成-Token-函数"><a href="#在-Auth-服务中写入生成-Token-函数" class="headerlink" title="在 Auth 服务中写入生成 Token 函数"></a>在 <code>Auth</code> 服务中写入生成 Token 函数</h3><p><code>auth.service.ts</code></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">// ...</span><br><span class="hljs-comment">// 生成 Jwt Token</span><br>    <span class="hljs-keyword">async</span> <span class="hljs-title function_">token</span>(<span class="hljs-params">&#123; name, id &#125;</span>) &#123;<br>        <span class="hljs-keyword">return</span> &#123;<br>            <span class="hljs-attr">token</span>: <span class="hljs-keyword">await</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">jwt</span>.<span class="hljs-title function_">signAsync</span>(&#123;<br>                name,<br>                <span class="hljs-attr">sub</span>: id<br>            &#125;)<br>        &#125;<br>    &#125;<br><span class="hljs-comment">// ...</span><br></code></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="七、利用全局拦截器完善接口返回结果"><a href="#七、利用全局拦截器完善接口返回结果" class="headerlink" title="七、利用全局拦截器完善接口返回结果"></a>七、利用全局拦截器完善接口返回结果</h2><ol>
+<li><h3 id="在-src-目录下创建-transform-interceptor-ts-文件"><a href="#在-src-目录下创建-transform-interceptor-ts-文件" class="headerlink" title="在 src 目录下创建 transform.interceptor.ts 文件"></a>在 src 目录下创建 <code>transform.interceptor.ts</code> 文件</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">CallHandler</span>, <span class="hljs-title class_">ExecutionContext</span>, <span class="hljs-title class_">Injectable</span>, <span class="hljs-title class_">NestInterceptor</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@nestjs/common&#x27;</span><br><span class="hljs-keyword">import</span> &#123; map &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;rxjs/operators&#x27;</span><br><br><span class="hljs-meta">@Injectable</span>()<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TransformInterceptor</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">NestInterceptor</span> &#123;<br>    <span class="hljs-title function_">intercept</span>(<span class="hljs-params">context: ExecutionContext, next: CallHandler</span>) &#123;<br>        <span class="hljs-keyword">return</span> next.<span class="hljs-title function_">handle</span>().<span class="hljs-title function_">pipe</span>(<br>            <span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">data</span>) =&gt;</span> &#123;<br>                <span class="hljs-keyword">return</span> &#123;<br>                    data,<br>                &#125;<br>            &#125;),<br>        )<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><h3 id="在-main-ts-文件中应用全局拦截器"><a href="#在-main-ts-文件中应用全局拦截器" class="headerlink" title="在 main.ts 文件中应用全局拦截器"></a>在 <code>main.ts</code> 文件中应用全局拦截器</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">TransformInterceptor</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./transform.interceptor&#x27;</span>;<br><br><span class="hljs-comment">// ...</span><br><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">bootstrap</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">await</span> <span class="hljs-title class_">NestFactory</span>.<span class="hljs-title function_">create</span>(<span class="hljs-title class_">AppModule</span>);<br>  <span class="hljs-comment">// 验证传入的参数是否符合条件</span><br>  app.<span class="hljs-title function_">useGlobalPipes</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Validate</span>())<br>  <span class="hljs-comment">// 全局拦截器</span><br>  app.<span class="hljs-title function_">useGlobalInterceptors</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">TransformInterceptor</span>())<br>  <span class="hljs-keyword">await</span> app.<span class="hljs-title function_">listen</span>(<span class="hljs-number">3000</span>);<br>&#125;<br><span class="hljs-comment">// ...</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><h3 id="接口测试-3"><a href="#接口测试-3" class="headerlink" title="接口测试"></a>接口测试</h3><p><img src="https://i.imgur.com/jP4lK4H.png" srcset="/img/loading.gif" lazyload alt="image-20221014103451676"></p>
+<p>返回结果包含在 <code>data</code> 对象当中</p>
+</li>
+</ol>
+<h2 id="八、完成登录功能"><a href="#八、完成登录功能" class="headerlink" title="八、完成登录功能"></a>八、完成登录功能</h2><ol>
+<li><h3 id="在-common-rules-文件夹下创建-IsExists-ts-文件"><a href="#在-common-rules-文件夹下创建-IsExists-ts-文件" class="headerlink" title="在 common/rules 文件夹下创建 IsExists.ts 文件"></a>在 <code>common/rules</code> 文件夹下创建 <code>IsExists.ts</code> 文件</h3></li>
+<li><h3 id="在-IsExists-ts-实现查找数据库中是否存在用户"><a href="#在-IsExists-ts-实现查找数据库中是否存在用户" class="headerlink" title="在 IsExists.ts 实现查找数据库中是否存在用户"></a>在 <code>IsExists.ts</code> 实现查找数据库中是否存在用户</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">PrismaClient</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@prisma/client&#x27;</span>;<br><span class="hljs-keyword">import</span> &#123; registerDecorator, <span class="hljs-title class_">ValidationOptions</span>, <span class="hljs-title class_">ValidationArguments</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;class-validator&#x27;</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">IsExists</span>(<span class="hljs-params">property: <span class="hljs-built_in">string</span>, validationOptions?: ValidationOptions</span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> (<span class="hljs-params"><span class="hljs-built_in">object</span>: <span class="hljs-built_in">Object</span>, propertyName: <span class="hljs-built_in">string</span></span>) &#123;<br>        <span class="hljs-title function_">registerDecorator</span>(&#123;<br>            <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;IsExists&#x27;</span>,<br>            <span class="hljs-attr">target</span>: <span class="hljs-built_in">object</span>.<span class="hljs-property">constructor</span>,<br>            <span class="hljs-attr">propertyName</span>: propertyName,<br>            <span class="hljs-attr">constraints</span>: [property],<br>            <span class="hljs-attr">options</span>: validationOptions,<br>            <span class="hljs-attr">validator</span>: &#123;<br>                <span class="hljs-keyword">async</span> <span class="hljs-title function_">validate</span>(<span class="hljs-params">value: <span class="hljs-built_in">any</span>, args: ValidationArguments</span>) &#123;<br>                    <span class="hljs-keyword">const</span> prisma = <span class="hljs-keyword">new</span> <span class="hljs-title class_">PrismaClient</span>()<br>                    <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> prisma.<span class="hljs-property">user</span>.<span class="hljs-title function_">findFirst</span>(&#123;<br>                        <span class="hljs-attr">where</span>: &#123;<br>                            <span class="hljs-attr">name</span>: value<br>                        &#125;<br>                    &#125;)<br>                    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Boolean</span>(res);<br>                &#125;,<br>            &#125;,<br>        &#125;);<br>    &#125;;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><h3 id="在登录-DTO-引用"><a href="#在登录-DTO-引用" class="headerlink" title="在登录 DTO 引用"></a>在登录 DTO 引用</h3><p><code>login.dto.ts</code></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">IsExists</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;src/common/rules/IsExists&quot;</span><br><br><span class="hljs-comment">// ...</span><br>    <span class="hljs-meta">@IsNotEmpty</span>(&#123; <span class="hljs-attr">message</span>: <span class="hljs-string">&quot;用户名不能为空&quot;</span> &#125;)<br>    <span class="hljs-meta">@IsExists</span>(<span class="hljs-string">&#x27;user&#x27;</span>, &#123; <span class="hljs-attr">message</span>: <span class="hljs-string">&quot;用户不存在&quot;</span> &#125;)<br>    <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span><br><span class="hljs-comment">// ...</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><h3 id="登录成功返回-Token"><a href="#登录成功返回-Token" class="headerlink" title="登录成功返回 Token"></a>登录成功返回 Token</h3><ol>
+<li><p>Auth 模块控制器调用 Auth 模块服务</p>
+<p><code>auth.controller.ts</code></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">// ...</span><br><span class="hljs-comment">// 登录</span><br>    <span class="hljs-meta">@Post</span>(<span class="hljs-string">&#x27;login&#x27;</span>)<br>    <span class="hljs-title function_">login</span>(<span class="hljs-params"><span class="hljs-meta">@Body</span>() dto: LoginDto</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">auth</span>.<span class="hljs-title function_">login</span>(dto)<br>    &#125;<br><span class="hljs-comment">// ...</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>Auth 模块服务校验密码</p>
+<p><code>auth.service.ts</code></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">// ...</span><br><span class="hljs-comment">// 登录</span><br>    <span class="hljs-keyword">async</span> <span class="hljs-title function_">login</span>(<span class="hljs-params">dto: LoginDto</span>) &#123;<br>        <span class="hljs-keyword">const</span> user = <span class="hljs-keyword">await</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">prisma</span>.<span class="hljs-property">user</span>.<span class="hljs-title function_">findUnique</span>(&#123;<br>            <span class="hljs-attr">where</span>: &#123;<br>                <span class="hljs-attr">name</span>: dto.<span class="hljs-property">name</span><br>            &#125;<br>        &#125;)<br>        <span class="hljs-comment">// 校验密码</span><br>        <span class="hljs-keyword">if</span> (!(<span class="hljs-keyword">await</span> <span class="hljs-title function_">verify</span>(user.<span class="hljs-property">password</span>, dto.<span class="hljs-property">password</span>))) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BadRequestException</span>(<span class="hljs-string">&quot;密码错误&quot;</span>)<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">token</span>(user)<br>    &#125;<br><span class="hljs-comment">// ...</span><br></code></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><h3 id="接口测试-4"><a href="#接口测试-4" class="headerlink" title="接口测试"></a>接口测试</h3><ol>
+<li><p>正常情况</p>
+<p><img src="https://i.imgur.com/oeHQa49.png" srcset="/img/loading.gif" lazyload alt="image-20221014110032065"></p>
+</li>
+<li><p>异常情况<img src="https://i.imgur.com/KXmsDOP.png" srcset="/img/loading.gif" lazyload alt="image-20221014104700222"></p>
+<p><img src="https://i.imgur.com/f2IzjJz.png" srcset="/img/loading.gif" lazyload alt="image-20221014105956215"></p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="九、一键生成文件模块增删改查接口"><a href="#九、一键生成文件模块增删改查接口" class="headerlink" title="九、一键生成文件模块增删改查接口"></a>九、一键生成文件模块增删改查接口</h2><p>假设你通过前面文档的学习，已经了解了模块、控制器、服务等概念知识。如果像前面那样还要一个模块一个服务创建的话有就点麻烦了。</p>
+<p>Nest.JS 提供了一键生成增删改查的命令，这里拿生成文章模块来举例。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs shell">nest g res article<br><br>? What transport layer do you use? (Use arrow keys)<br>❯ REST API <br>  GraphQL (code first) <br>  GraphQL (schema first) <br>  Microservice (non-HTTP) <br>  WebSockets <br><br>? Would you like to generate CRUD entry points? (Y/n) Y<br><br>CREATE src/article/article.controller.spec.ts (586 bytes)<br>CREATE src/article/article.controller.ts (946 bytes)<br>CREATE src/article/article.module.ts (261 bytes)<br>CREATE src/article/article.service.spec.ts (467 bytes)<br>CREATE src/article/article.service.ts (649 bytes)<br>CREATE src/article/dto/create-article.dto.ts (33 bytes)<br>CREATE src/article/dto/update-article.dto.ts (181 bytes)<br>CREATE src/article/entities/article.entity.ts (24 bytes)<br>UPDATE src/app.module.ts (334 bytes)<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/Mmx2shB.png" srcset="/img/loading.gif" lazyload alt="image-20221014142034780"></p>
+<p>非常方便快捷</p>
+<h2 id="十、文章列表接口"><a href="#十、文章列表接口" class="headerlink" title="十、文章列表接口"></a>十、文章列表接口</h2><ol>
+<li><h3 id="Article-服务引入-Prisma-服务和-ConfigModule-服务"><a href="#Article-服务引入-Prisma-服务和-ConfigModule-服务" class="headerlink" title="Article 服务引入 Prisma 服务和 ConfigModule 服务"></a>Article 服务引入 Prisma 服务和 ConfigModule 服务</h3><p><code>article.service.ts</code></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">ConfigService</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@nestjs/config&#x27;</span>;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">PrismaService</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;src/prisma/prisma.service&#x27;</span>;<br><br><span class="hljs-comment">// ...</span><br>  <span class="hljs-title function_">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> prisma: PrismaService, <span class="hljs-keyword">private</span> config: ConfigService</span>) &#123;<br><br>  &#125;<br>  <span class="hljs-comment">// ...</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+</li>
+<li><h3 id="查询全部文章"><a href="#查询全部文章" class="headerlink" title="查询全部文章"></a>查询全部文章</h3><p><code>article.service.ts</code></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">// ...  </span><br><span class="hljs-keyword">async</span> <span class="hljs-title function_">findAll</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">const</span> articles = <span class="hljs-keyword">await</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">prisma</span>.<span class="hljs-property">article</span>.<span class="hljs-title function_">findMany</span>()<br>    <span class="hljs-keyword">return</span> articles<br>  &#125;<br><span class="hljs-comment">// ...</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/2mmUROf.png" srcset="/img/loading.gif" lazyload alt="image-20221014144139744"></p>
+</li>
+<li><h3 id="在-app-module-ts-全局引入-ConfigModule"><a href="#在-app-module-ts-全局引入-ConfigModule" class="headerlink" title="在 app.module.ts 全局引入 ConfigModule"></a>在 <code>app.module.ts</code> 全局引入 ConfigModule</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">// ...</span><br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">ConfigModule</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@nestjs/config&#x27;</span>;<br><br><br><span class="hljs-meta">@Module</span>(&#123;<br>  <span class="hljs-attr">imports</span>: [<span class="hljs-title class_">AuthModule</span>, <span class="hljs-title class_">PrismaModule</span>, <span class="hljs-title class_">ArticleModule</span>, <span class="hljs-title class_">ConfigModule</span>.<span class="hljs-title function_">forRoot</span>(&#123;<br>    <span class="hljs-attr">isGlobal</span>: <span class="hljs-literal">true</span><br>  &#125;)],<br>  <span class="hljs-attr">controllers</span>: [],<br>  <span class="hljs-attr">providers</span>: [],<br>&#125;)<br><span class="hljs-comment">// ...</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><h3 id="在-env-文件写入每页文章显示数"><a href="#在-env-文件写入每页文章显示数" class="headerlink" title="在 .env 文件写入每页文章显示数"></a>在 <code>.env</code> 文件写入每页文章显示数</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text"># 每页显示 10 行<br>ARTICLE_PAGE_ROW=10<br></code></pre></td></tr></table></figure>
+</li>
+<li><h3 id="在-article-service-ts-引入-ARTICLE-PAGE-ROW-字段"><a href="#在-article-service-ts-引入-ARTICLE-PAGE-ROW-字段" class="headerlink" title="在 article.service.ts 引入 ARTICLE_PAGE_ROW 字段"></a>在 <code>article.service.ts</code> 引入 <code>ARTICLE_PAGE_ROW</code> 字段</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">// ...</span><br><span class="hljs-keyword">async</span> <span class="hljs-title function_">findAll</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">const</span> articles = <span class="hljs-keyword">await</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">prisma</span>.<span class="hljs-property">article</span>.<span class="hljs-title function_">findMany</span>()<br>    <span class="hljs-keyword">const</span> pageSize = <span class="hljs-variable language_">this</span>.<span class="hljs-property">config</span>.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;ARTICLE_PAGE_ROW&#x27;</span>)<br>    <span class="hljs-keyword">return</span> articles<br>  &#125;<br><span class="hljs-comment">// ...</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><h3 id="返回结果分页"><a href="#返回结果分页" class="headerlink" title="返回结果分页"></a>返回结果分页</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">/// ...</span><br><span class="hljs-keyword">async</span> <span class="hljs-title function_">findAll</span>(<span class="hljs-params">page = <span class="hljs-number">1</span></span>) &#123;<br>    <span class="hljs-comment">// 每页总数</span><br>    <span class="hljs-keyword">const</span> pageSize = +<span class="hljs-variable language_">this</span>.<span class="hljs-property">config</span>.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;ARTICLE_PAGE_ROW&#x27;</span>)<br>    <span class="hljs-comment">// 文章列表</span><br>    <span class="hljs-keyword">const</span> articles = <span class="hljs-keyword">await</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">prisma</span>.<span class="hljs-property">article</span>.<span class="hljs-title function_">findMany</span>(&#123;<br>      <span class="hljs-attr">take</span>: pageSize,<br>      <span class="hljs-attr">skip</span>: (page - <span class="hljs-number">1</span>) * pageSize<br>    &#125;)<br>    <span class="hljs-comment">// 文章总数</span><br>    <span class="hljs-keyword">const</span> total = <span class="hljs-keyword">await</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">prisma</span>.<span class="hljs-property">article</span>.<span class="hljs-title function_">count</span>()<br>    <span class="hljs-keyword">return</span> &#123;<br>      <span class="hljs-attr">meta</span>: &#123; <span class="hljs-attr">currPage</span>: page, pageSize, total, <span class="hljs-attr">totalPage</span>: <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">ceil</span>(total / pageSize) &#125;,<br>      <span class="hljs-attr">data</span>: articles,<br>    &#125;<br>  &#125;<br><span class="hljs-comment">// ...</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/S8Xq4ai.png" srcset="/img/loading.gif" lazyload alt="image-20221014145336954"></p>
+<p>返回了 <code>ARTICLE_PAGE_ROW</code> 中定义的 10 行</p>
+</li>
+<li><h3 id="在-Article-控制器传入-page"><a href="#在-Article-控制器传入-page" class="headerlink" title="在 Article 控制器传入 page"></a>在 Article 控制器传入 page</h3></li>
+<li><h3 id="接口测试-5"><a href="#接口测试-5" class="headerlink" title="接口测试"></a>接口测试</h3><p><img src="https://i.imgur.com/z0pNYRL.png" srcset="/img/loading.gif" lazyload alt="image-20221014155457652"></p>
+</li>
+</ol>
+<h2 id="十一、文章详情接口"><a href="#十一、文章详情接口" class="headerlink" title="十一、文章详情接口"></a>十一、文章详情接口</h2><ol>
+<li><h3 id="article-service-ts"><a href="#article-service-ts" class="headerlink" title="article.service.ts"></a><code>article.service.ts</code></h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">// 文章详情</span><br><span class="hljs-keyword">async</span> <span class="hljs-title function_">findOne</span>(<span class="hljs-params">id: <span class="hljs-built_in">number</span></span>) &#123;<br>  <span class="hljs-keyword">const</span> article = <span class="hljs-keyword">await</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">prisma</span>.<span class="hljs-property">article</span>.<span class="hljs-title function_">findUnique</span>(&#123;<br>    <span class="hljs-attr">where</span>: &#123; id &#125;<br>  &#125;)<br>  <span class="hljs-keyword">return</span> article<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><h3 id="接口测试-6"><a href="#接口测试-6" class="headerlink" title="接口测试"></a>接口测试<img src="https://i.imgur.com/2g16WdK.png" srcset="/img/loading.gif" lazyload alt="image-20221014160844349"></h3></li>
+</ol>
+<h2 id="十二、添加文章接口"><a href="#十二、添加文章接口" class="headerlink" title="十二、添加文章接口"></a>十二、添加文章接口</h2><ol>
+<li><h3 id="article-service-ts-1"><a href="#article-service-ts-1" class="headerlink" title="article.service.ts"></a><code>article.service.ts</code></h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">// 添加文章</span><br><span class="hljs-keyword">async</span> <span class="hljs-title function_">create</span>(<span class="hljs-params">createArticleDto: CreateArticleDto</span>) &#123;<br>  <span class="hljs-keyword">const</span> article = <span class="hljs-keyword">await</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">prisma</span>.<span class="hljs-property">article</span>.<span class="hljs-title function_">create</span>(&#123;<br>    <span class="hljs-attr">data</span>: createArticleDto<br>  &#125;)<br>  <span class="hljs-keyword">return</span> article<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><h3 id="接口测试-7"><a href="#接口测试-7" class="headerlink" title="接口测试"></a>接口测试<img src="https://i.imgur.com/ra6glKG.png" srcset="/img/loading.gif" lazyload alt="image-20221014162134701"></h3></li>
+</ol>
+<h2 id="十三、修改文章接口"><a href="#十三、修改文章接口" class="headerlink" title="十三、修改文章接口"></a>十三、修改文章接口</h2><ol>
+<li><h3 id="article-service-ts-2"><a href="#article-service-ts-2" class="headerlink" title="article.service.ts"></a><code>article.service.ts</code></h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">// 修改文章</span><br> <span class="hljs-keyword">async</span> <span class="hljs-title function_">update</span>(<span class="hljs-params">id: <span class="hljs-built_in">number</span>, updateArticleDto: UpdateArticleDto</span>) &#123;<br>   <span class="hljs-keyword">const</span> article = <span class="hljs-keyword">await</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">prisma</span>.<span class="hljs-property">article</span>.<span class="hljs-title function_">update</span>(&#123;<br>     <span class="hljs-attr">where</span>: &#123; id &#125;,<br>     <span class="hljs-attr">data</span>: updateArticleDto<br>   &#125;)<br>   <span class="hljs-keyword">return</span> article<br> &#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><h3 id="接口测试-8"><a href="#接口测试-8" class="headerlink" title="接口测试"></a>接口测试<img src="https://i.imgur.com/x2nDMXV.png" srcset="/img/loading.gif" lazyload alt="image-20221014163244820"></h3></li>
+</ol>
+<h2 id="十四、删除文章接口"><a href="#十四、删除文章接口" class="headerlink" title="十四、删除文章接口"></a>十四、删除文章接口</h2><ol>
+<li><h3 id="article-service-ts-3"><a href="#article-service-ts-3" class="headerlink" title="article.service.ts"></a><code>article.service.ts</code></h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">// 删除文章</span><br><span class="hljs-title function_">remove</span>(<span class="hljs-params">id: <span class="hljs-built_in">number</span></span>) &#123;<br>  <span class="hljs-keyword">const</span> article = <span class="hljs-variable language_">this</span>.<span class="hljs-property">prisma</span>.<span class="hljs-property">article</span>.<span class="hljs-title function_">delete</span>(&#123;<br>    <span class="hljs-attr">where</span>: &#123; id &#125;<br>  &#125;)<br>  <span class="hljs-keyword">return</span> <br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><h3 id="接口测试-9"><a href="#接口测试-9" class="headerlink" title="接口测试"></a>接口测试<img src="https://i.imgur.com/EdT3Pju.png" srcset="/img/loading.gif" lazyload alt="image-20221014162635882"></h3></li>
+</ol>
+<h2 id="十五、设置-API-前缀"><a href="#十五、设置-API-前缀" class="headerlink" title="十五、设置 API 前缀"></a>十五、设置 API 前缀</h2><p>因为 Nest.JS 可以使用 Express 底层，如果想前端和后端项目跑在同一个域名，需要设置 API 前缀。</p>
+<ol>
+<li><h3 id="在-main-ts-定义为-Express-应用"><a href="#在-main-ts-定义为-Express-应用" class="headerlink" title="在 main.ts 定义为 Express 应用"></a>在 <code>main.ts</code> 定义为 Express 应用</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">NestExpressApplication</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@nestjs/platform-express&#x27;</span>;<br><br><span class="hljs-comment">// ...</span><br><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">await</span> <span class="hljs-title class_">NestFactory</span>.<span class="hljs-property">create</span>&lt;<span class="hljs-title class_">NestExpressApplication</span>&gt;(<span class="hljs-title class_">AppModule</span>);<br><span class="hljs-comment">// ...</span><br><span class="hljs-comment">// API 前缀</span><br>  app.<span class="hljs-title function_">setGlobalPrefix</span>(<span class="hljs-string">&#x27;api&#x27;</span>)<br><span class="hljs-comment">// ...</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><h3 id="接口测试-10"><a href="#接口测试-10" class="headerlink" title="接口测试"></a>接口测试</h3><ol>
+<li>旧 API URL 地址报404<img src="https://i.imgur.com/jdgNOKB.png" srcset="/img/loading.gif" lazyload></li>
+<li>新 API URL 地址正常<img src="https://i.imgur.com/zLh4Mgs.png" srcset="/img/loading.gif" lazyload alt="image-20221017145640982"></li>
+</ol>
+</li>
+</ol>
+<h2 id="十六、添加栏目模型"><a href="#十六、添加栏目模型" class="headerlink" title="十六、添加栏目模型"></a>十六、添加栏目模型</h2><ol>
+<li><h3 id="schema-prisma"><a href="#schema-prisma" class="headerlink" title="schema.prisma"></a><code>schema.prisma</code></h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs text">// ...<br>model category &#123;<br>  id       Int       @id @default(autoincrement()) @db.UnsignedInt<br>  title    String<br>  articles article[]<br>&#125;<br><br>model article &#123;<br>  id         Int      @id @default(autoincrement()) @db.UnsignedInt<br>  title      String<br>  content    String   @db.Text<br>  category   category @relation(fields: [categoryId], references: [id], onDelete: Cascade)<br>  categoryId Int      @db.UnsignedInt<br>&#125;<br>// ...<br></code></pre></td></tr></table></figure>
+
+</li>
+<li><h3 id="数据填充-seed-ts"><a href="#数据填充-seed-ts" class="headerlink" title="数据填充 seed.ts"></a>数据填充 <code>seed.ts</code></h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs typescript">    <span class="hljs-comment">// ...</span><br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">5</span>; i++) &#123;<br>        <span class="hljs-keyword">await</span> prisma.<span class="hljs-property">category</span>.<span class="hljs-title function_">create</span>(&#123;<br>            <span class="hljs-attr">data</span>: &#123;<br>                <span class="hljs-attr">title</span>: <span class="hljs-title class_">Random</span>.<span class="hljs-title function_">ctitle</span>(<span class="hljs-number">3</span>, <span class="hljs-number">6</span>),<br>            &#125;<br>        &#125;)<br>    &#125;<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">50</span>; i++) &#123;<br>        <span class="hljs-keyword">await</span> prisma.<span class="hljs-property">article</span>.<span class="hljs-title function_">create</span>(&#123;<br>            <span class="hljs-attr">data</span>: &#123;<br>                <span class="hljs-attr">title</span>: <span class="hljs-title class_">Random</span>.<span class="hljs-title function_">ctitle</span>(<span class="hljs-number">10</span>, <span class="hljs-number">30</span>),<br>                <span class="hljs-attr">content</span>: <span class="hljs-title class_">Random</span>.<span class="hljs-title function_">cparagraph</span>(<span class="hljs-number">30</span>, <span class="hljs-number">40</span>),<br>                <span class="hljs-attr">categoryId</span>: _.<span class="hljs-title function_">random</span>(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>)<br>            &#125;<br>        &#125;)<br>    &#125;<br>    <span class="hljs-comment">// ...</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><h3 id="tsconfig-json-添加一行，否则-loadsh-会报错"><a href="#tsconfig-json-添加一行，否则-loadsh-会报错" class="headerlink" title="tsconfig.json 添加一行，否则 loadsh 会报错"></a><code>tsconfig.json</code> 添加一行，否则 loadsh 会报错</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-attr">&quot;esModuleInterop&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><br></code></pre></td></tr></table></figure>
+</li>
+<li><h3 id="更新迁移文件"><a href="#更新迁移文件" class="headerlink" title="更新迁移文件"></a>更新迁移文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">npx prisma migrate reset<br></code></pre></td></tr></table></figure>
+<p>直接运行可能会报错，在 MySQL 命令行中执行</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">TRUNCATE</span> article<br></code></pre></td></tr></table></figure>
+
+<p>然后重新跑一遍更新迁移文件</p>
+</li>
+<li><h3 id="数据库添加成功"><a href="#数据库添加成功" class="headerlink" title="数据库添加成功"></a>数据库添加成功</h3><ol>
+<li><p><code>category</code> 表</p>
+<p><img src="https://i.imgur.com/f4nxCh2.png" srcset="/img/loading.gif" lazyload alt="image-20221017152013359"></p>
+</li>
+<li><p><code>article</code> 表</p>
+<p><img src="https://i.imgur.com/UptbGRI.png" srcset="/img/loading.gif" lazyload alt="image-20221017152030853"></p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="十七、栏目增删改查"><a href="#十七、栏目增删改查" class="headerlink" title="十七、栏目增删改查"></a>十七、栏目增删改查</h2><ol>
+<li><h3 id="category-service-ts"><a href="#category-service-ts" class="headerlink" title="category.service.ts"></a><code>category.service.ts</code></h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">Injectable</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@nestjs/common&#x27;</span>;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">PrismaService</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;src/prisma/prisma.service&#x27;</span>;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">CreateCategoryDto</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./dto/create-category.dto&#x27;</span>;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">UpdateCategoryDto</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./dto/update-category.dto&#x27;</span>;<br><br><span class="hljs-meta">@Injectable</span>()<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">CategoryService</span> &#123;<br>  <span class="hljs-title function_">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> prisma: PrismaService</span>) &#123;<br><br>  &#125;<br>  <span class="hljs-keyword">async</span> <span class="hljs-title function_">create</span>(<span class="hljs-params">createCategoryDto: CreateCategoryDto</span>) &#123;<br>    <span class="hljs-keyword">const</span> category = <span class="hljs-keyword">await</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">prisma</span>.<span class="hljs-property">category</span>.<span class="hljs-title function_">create</span>(&#123;<br>      <span class="hljs-attr">data</span>: &#123;<br>        <span class="hljs-attr">title</span>: createCategoryDto.<span class="hljs-property">title</span><br>      &#125;<br>    &#125;)<br>    <span class="hljs-keyword">return</span> &#123; <span class="hljs-attr">message</span>: <span class="hljs-string">&quot;添加栏目成功&quot;</span> &#125;<br>  &#125;<br><br>  <span class="hljs-keyword">async</span> <span class="hljs-title function_">findAll</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">const</span> categories = <span class="hljs-keyword">await</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">prisma</span>.<span class="hljs-property">category</span>.<span class="hljs-title function_">findMany</span>()<br>    <span class="hljs-keyword">return</span> &#123; <span class="hljs-attr">data</span>: categories &#125;<br>  &#125;<br><br>  <span class="hljs-keyword">async</span> <span class="hljs-title function_">findOne</span>(<span class="hljs-params">id: <span class="hljs-built_in">number</span></span>) &#123;<br>    <span class="hljs-keyword">const</span> category = <span class="hljs-keyword">await</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">prisma</span>.<span class="hljs-property">category</span>.<span class="hljs-title function_">findUnique</span>(&#123;<br>      <span class="hljs-attr">where</span>: &#123; id &#125;<br>    &#125;)<br>    <span class="hljs-keyword">return</span> &#123; <span class="hljs-attr">data</span>: category &#125;<br>  &#125;<br><br>  <span class="hljs-keyword">async</span> <span class="hljs-title function_">update</span>(<span class="hljs-params">id: <span class="hljs-built_in">number</span>, updateCategoryDto: UpdateCategoryDto</span>) &#123;<br>    <span class="hljs-keyword">const</span> category = <span class="hljs-keyword">await</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">prisma</span>.<span class="hljs-property">category</span>.<span class="hljs-title function_">update</span>(&#123;<br>      <span class="hljs-attr">data</span>: &#123;<br>        <span class="hljs-attr">title</span>: updateCategoryDto.<span class="hljs-property">title</span><br>      &#125;,<br>      <span class="hljs-attr">where</span>: &#123; id &#125;<br>    &#125;)<br>    <span class="hljs-keyword">return</span> &#123; <span class="hljs-attr">message</span>: <span class="hljs-string">&quot;修改成功&quot;</span> &#125;<br>  &#125;<br><br>  <span class="hljs-keyword">async</span> <span class="hljs-title function_">remove</span>(<span class="hljs-params">id: <span class="hljs-built_in">number</span></span>) &#123;<br>    <span class="hljs-keyword">const</span> category = <span class="hljs-keyword">await</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">prisma</span>.<span class="hljs-property">category</span>.<span class="hljs-title function_">delete</span>(&#123;<br>      <span class="hljs-attr">where</span>: &#123; id &#125;<br>    &#125;)<br>    <span class="hljs-keyword">return</span> &#123; <span class="hljs-attr">message</span>: <span class="hljs-string">&quot;删除成功&quot;</span> &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><h3 id="增加栏目"><a href="#增加栏目" class="headerlink" title="增加栏目"></a>增加栏目</h3><p><img src="https://i.imgur.com/rv47BAd.png" srcset="/img/loading.gif" lazyload alt="image-20221018174801964"></p>
+</li>
+<li><h3 id="删除栏目"><a href="#删除栏目" class="headerlink" title="删除栏目"></a>删除栏目</h3><p><img src="https://i.imgur.com/ayLllK2.png" srcset="/img/loading.gif" lazyload alt="image-20221018174830043"></p>
+</li>
+<li><h3 id="修改栏目"><a href="#修改栏目" class="headerlink" title="修改栏目"></a>修改栏目</h3><p><img src="https://i.imgur.com/zArESKM.png" srcset="/img/loading.gif" lazyload alt="image-20221018175147099"></p>
+</li>
+<li><h3 id="获取全部栏目"><a href="#获取全部栏目" class="headerlink" title="获取全部栏目"></a>获取全部栏目</h3><p><img src="https://i.imgur.com/vNZYZ0k.png" srcset="/img/loading.gif" lazyload alt="image-20221018175106004"></p>
+</li>
+<li><h3 id="获取栏目详情"><a href="#获取栏目详情" class="headerlink" title="获取栏目详情"></a>获取栏目详情</h3><p><img src="https://i.imgur.com/gNlkpQK.png" srcset="/img/loading.gif" lazyload alt="image-20221018175219584"></p>
+</li>
+</ol>
+<h2 id="十八、Token-身份验证"><a href="#十八、Token-身份验证" class="headerlink" title="十八、Token 身份验证"></a>十八、Token 身份验证</h2><ol>
+<li><h3 id="Jwt-策略"><a href="#Jwt-策略" class="headerlink" title="Jwt 策略"></a>Jwt 策略</h3><ol>
+<li><h4 id="在-Auth-模块中添加-strategy-文件夹"><a href="#在-Auth-模块中添加-strategy-文件夹" class="headerlink" title="在 Auth 模块中添加 strategy 文件夹"></a>在 Auth 模块中添加 <code>strategy</code> 文件夹</h4></li>
+<li><h4 id="写入-jwt-strategy-ts-文件"><a href="#写入-jwt-strategy-ts-文件" class="headerlink" title="写入 jwt.strategy.ts 文件"></a>写入 <code>jwt.strategy.ts</code> 文件</h4><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">PrismaService</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../../prisma/prisma.service&#x27;</span>;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">ConfigService</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@nestjs/config&#x27;</span>;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">ExtractJwt</span>, <span class="hljs-title class_">Strategy</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;passport-jwt&#x27;</span>;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">PassportStrategy</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@nestjs/passport&#x27;</span>;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">Injectable</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@nestjs/common&#x27;</span>;<br><br><span class="hljs-meta">@Injectable</span>()<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">JwtStrategy</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">PassportStrategy</span>(<span class="hljs-title class_">Strategy</span>, <span class="hljs-string">&#x27;jwt&#x27;</span>) &#123;<br>    <span class="hljs-title function_">constructor</span>(<span class="hljs-params">configService: ConfigService, <span class="hljs-keyword">private</span> prisma: PrismaService</span>) &#123;<br>        <span class="hljs-variable language_">super</span>(&#123;<br>            <span class="hljs-comment">//解析用户提交的header中的Bearer Token数据</span><br>            <span class="hljs-attr">jwtFromRequest</span>: <span class="hljs-title class_">ExtractJwt</span>.<span class="hljs-title function_">fromAuthHeaderAsBearerToken</span>(),<br>            <span class="hljs-comment">//加密码的 secret</span><br>            <span class="hljs-attr">secretOrKey</span>: configService.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;TOKEN_SECRET&#x27;</span>),<br>        &#125;);<br>    &#125;<br><br>    <span class="hljs-comment">//验证通过后获取用户资料</span><br>    <span class="hljs-keyword">async</span> <span class="hljs-title function_">validate</span>(<span class="hljs-params">&#123; sub: id &#125;</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">prisma</span>.<span class="hljs-property">user</span>.<span class="hljs-title function_">findUnique</span>(&#123;<br>            <span class="hljs-attr">where</span>: &#123; id &#125;,<br>        &#125;);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><h3 id="Auth-模块添加-Jwt-策略"><a href="#Auth-模块添加-Jwt-策略" class="headerlink" title="Auth 模块添加 Jwt 策略"></a>Auth 模块添加 Jwt 策略</h3><ol>
+<li><h4 id="auth-module-ts"><a href="#auth-module-ts" class="headerlink" title="auth.module.ts"></a><code>auth.module.ts</code></h4><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">// ...</span><br>  <span class="hljs-attr">providers</span>: [<span class="hljs-title class_">AuthService</span>, <span class="hljs-title class_">JwtStrategy</span>]<br><span class="hljs-comment">// ...</span><br></code></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><h3 id="接口添加守卫"><a href="#接口添加守卫" class="headerlink" title="接口添加守卫"></a>接口添加守卫</h3><ol>
+<li><h4 id="以获取全部栏目为例"><a href="#以获取全部栏目为例" class="headerlink" title="以获取全部栏目为例"></a>以获取全部栏目为例</h4><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">// ...</span><br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">AuthGuard</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@nestjs/passport&#x27;</span>;<br><span class="hljs-comment">// ...  </span><br>  <span class="hljs-meta">@Get</span>()<br>  <span class="hljs-meta">@UseGuards</span>(<span class="hljs-title class_">AuthGuard</span>(<span class="hljs-string">&#x27;jwt&#x27;</span>))<br>  <span class="hljs-title function_">findAll</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">categoryService</span>.<span class="hljs-title function_">findAll</span>();<br>  &#125;<br><span class="hljs-comment">// ...</span><br></code></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><h3 id="接口测试-11"><a href="#接口测试-11" class="headerlink" title="接口测试"></a>接口测试<img src="https://i.imgur.com/rzTjhUz.png" srcset="/img/loading.gif" lazyload alt="image-20221024143754795"></h3><p>返回 401</p>
+</li>
+<li><h3 id="聚合装饰器"><a href="#聚合装饰器" class="headerlink" title="聚合装饰器"></a>聚合装饰器</h3><ol>
+<li><h4 id="如果每个需要-Tkoen-验证的接口都要手动写的话就太麻烦了，所以可以弄一个聚合装饰器"><a href="#如果每个需要-Tkoen-验证的接口都要手动写的话就太麻烦了，所以可以弄一个聚合装饰器" class="headerlink" title="如果每个需要 Tkoen 验证的接口都要手动写的话就太麻烦了，所以可以弄一个聚合装饰器"></a>如果每个需要 Tkoen 验证的接口都要手动写的话就太麻烦了，所以可以弄一个聚合装饰器</h4></li>
+<li><h4 id="Auth-新建-decorator-文件夹"><a href="#Auth-新建-decorator-文件夹" class="headerlink" title="Auth 新建 decorator 文件夹"></a>Auth 新建 <code>decorator</code> 文件夹</h4></li>
+<li><h4 id="新建-auth-decorator-ts-文件"><a href="#新建-auth-decorator-ts-文件" class="headerlink" title="新建 auth.decorator.ts 文件"></a>新建 <code>auth.decorator.ts</code> 文件</h4><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">import</span> &#123; applyDecorators, <span class="hljs-title class_">SetMetadata</span>, <span class="hljs-title class_">UseGuards</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@nestjs/common&quot;</span>;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">AuthGuard</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@nestjs/passport&quot;</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Auth</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-title function_">applyDecorators</span>(<span class="hljs-title class_">UseGuards</span>(<span class="hljs-title class_">AuthGuard</span>(<span class="hljs-string">&#x27;jwt&#x27;</span>)))<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><h4 id="在-Auth-Controller-引用"><a href="#在-Auth-Controller-引用" class="headerlink" title="在 Auth Controller 引用"></a>在 Auth Controller 引用</h4><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">// ...</span><br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">Auth</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;src/auth/decorator/auth.decorator&#x27;</span>;<br><span class="hljs-comment">// ...  </span><br><span class="hljs-comment">// 文章列表</span><br>  <span class="hljs-meta">@Get</span>()<br>  <span class="hljs-comment">// @UseGuards(AuthGuard(&#x27;jwt&#x27;))</span><br>  <span class="hljs-meta">@Auth</span>()<br>  <span class="hljs-title function_">findAll</span>(<span class="hljs-params"><span class="hljs-meta">@Query</span>(<span class="hljs-string">&#x27;page&#x27;</span>) page: <span class="hljs-built_in">string</span></span>) &#123;<br>    <span class="hljs-keyword">if</span> (!page) page = <span class="hljs-string">&#x27;1&#x27;</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">articleService</span>.<span class="hljs-title function_">findAll</span>(+page);<br>  &#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><h4 id="接口测试-12"><a href="#接口测试-12" class="headerlink" title="接口测试"></a>接口测试<img src="https://i.imgur.com/KRfxX2m.png" srcset="/img/loading.gif" lazyload alt="image-20221027112715168"></h4></li>
+<li><h4 id="这样就不用每次都要写一行了"><a href="#这样就不用每次都要写一行了" class="headerlink" title="这样就不用每次都要写一行了"></a>这样就不用每次都要写一行了</h4></li>
+</ol>
+</li>
+</ol>
+<h2 id="十九、角色守卫"><a href="#十九、角色守卫" class="headerlink" title="十九、角色守卫"></a>十九、角色守卫</h2><ol>
+<li><h4 id="数据库用户模型添加角色字段"><a href="#数据库用户模型添加角色字段" class="headerlink" title="数据库用户模型添加角色字段"></a>数据库用户模型添加角色字段</h4><p><code>schema.prisma</code></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs text">// ...<br>model user &#123;<br>  id       Int     @id @default(autoincrement()) @db.UnsignedInt<br>  name     String  @unique<br>  password String<br>  role     String?<br>&#125;<br>// ...<br></code></pre></td></tr></table></figure>
+</li>
+<li><h4 id="重新生成迁移文件"><a href="#重新生成迁移文件" class="headerlink" title="重新生成迁移文件"></a>重新生成迁移文件</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">npx prisma migrate dev<br></code></pre></td></tr></table></figure>
+</li>
+<li><h4 id="自动生成文件添加角色字段"><a href="#自动生成文件添加角色字段" class="headerlink" title="自动生成文件添加角色字段"></a>自动生成文件添加角色字段</h4><p><code>seed.ts</code></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">// ...</span><br><span class="hljs-keyword">await</span> prisma.<span class="hljs-property">user</span>.<span class="hljs-title function_">create</span>(&#123;<br>        <span class="hljs-attr">data</span>: &#123;<br>            <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;admin&#x27;</span>,<br>            <span class="hljs-attr">password</span>: <span class="hljs-keyword">await</span> <span class="hljs-title function_">hash</span>(<span class="hljs-string">&#x27;123456&#x27;</span>),<br>            <span class="hljs-attr">role</span>:<span class="hljs-string">&#x27;admin&#x27;</span><br>        &#125;<br>    &#125;)<br><span class="hljs-comment">// ...</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><h4 id="定义枚举角色"><a href="#定义枚举角色" class="headerlink" title="定义枚举角色"></a>定义枚举角色</h4><ol>
+<li><p>新建 <code>auth/enum.ts</code></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">Role</span> &#123;<br>    <span class="hljs-variable constant_">ADMIN</span> = <span class="hljs-string">&#x27;admin&#x27;</span>,<br>    <span class="hljs-variable constant_">EDITOR</span> = <span class="hljs-string">&#x27;editor&#x27;</span><br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><h4 id="在聚合装饰器里引用"><a href="#在聚合装饰器里引用" class="headerlink" title="在聚合装饰器里引用"></a>在聚合装饰器里引用</h4><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">import</span> &#123; applyDecorators, <span class="hljs-title class_">SetMetadata</span>, <span class="hljs-title class_">UseGuards</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@nestjs/common&quot;</span>;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">AuthGuard</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@nestjs/passport&quot;</span>;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">Role</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;../enum&quot;</span>;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">RoleGuard</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;../guard/role.guard&quot;</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Auth</span>(<span class="hljs-params">...roles: Role[]</span>) &#123;<br>    <span class="hljs-comment">/* SetMetadata 设置元数据 */</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-title function_">applyDecorators</span>(<span class="hljs-title class_">SetMetadata</span>(<span class="hljs-string">&#x27;roles&#x27;</span>, roles), <span class="hljs-title class_">UseGuards</span>(<span class="hljs-title class_">AuthGuard</span>(<span class="hljs-string">&#x27;jwt&#x27;</span>), <span class="hljs-title class_">RoleGuard</span>))<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><h4 id="创建角色守卫"><a href="#创建角色守卫" class="headerlink" title="创建角色守卫"></a>创建角色守卫</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">nest g gu auth/guard/role --no-spec<br></code></pre></td></tr></table></figure>
+</li>
+<li><h3 id="role-guard-ts"><a href="#role-guard-ts" class="headerlink" title="role.guard.ts"></a><code>role.guard.ts</code></h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">CanActivate</span>, <span class="hljs-title class_">ExecutionContext</span>, <span class="hljs-title class_">Injectable</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@nestjs/common&#x27;</span>;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">Reflector</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@nestjs/core&#x27;</span>;<br><span class="hljs-keyword">import</span> &#123; user &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@prisma/client&#x27;</span>;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">Observable</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;rxjs&#x27;</span>;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">Role</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../enum&#x27;</span>;<br><br><span class="hljs-meta">@Injectable</span>()<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">RoleGuard</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">CanActivate</span> &#123;<br>  <span class="hljs-title function_">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> reflector: Reflector</span>) &#123; &#125;<br>  <span class="hljs-title function_">canActivate</span>(<span class="hljs-attr">context</span>: <span class="hljs-title class_">ExecutionContext</span>,): <span class="hljs-built_in">boolean</span> | <span class="hljs-title class_">Promise</span>&lt;<span class="hljs-built_in">boolean</span>&gt; | <span class="hljs-title class_">Observable</span>&lt;<span class="hljs-built_in">boolean</span>&gt; &#123;<br>    <span class="hljs-comment">/* 打印当前用户 */</span><br>    <span class="hljs-keyword">const</span> user = context.<span class="hljs-title function_">switchToHttp</span>().<span class="hljs-title function_">getRequest</span>().<span class="hljs-property">user</span> <span class="hljs-keyword">as</span> user<br>    <span class="hljs-comment">/* 打印元数据的角色 */</span><br>    <span class="hljs-keyword">const</span> roles = <span class="hljs-variable language_">this</span>.<span class="hljs-property">reflector</span>.<span class="hljs-property">getAllAndMerge</span>&lt;<span class="hljs-title class_">Role</span>[]&gt;(<span class="hljs-string">&#x27;roles&#x27;</span>, [context.<span class="hljs-title function_">getHandler</span>(), context.<span class="hljs-title function_">getClass</span>()])<br>    <span class="hljs-keyword">return</span> roles.<span class="hljs-property">length</span> ? roles.<span class="hljs-title function_">some</span>(<span class="hljs-function">(<span class="hljs-params">role</span>) =&gt;</span> &#123; user.<span class="hljs-property">role</span> === role &#125;) : <span class="hljs-literal">true</span>;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><h3 id="在控制器调用"><a href="#在控制器调用" class="headerlink" title="在控制器调用"></a>在控制器调用</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">// 文章列表</span><br><span class="hljs-meta">@Get</span>()<br><span class="hljs-meta">@Auth</span>(<span class="hljs-title class_">Role</span>.<span class="hljs-property">ADMIN</span>)<br><span class="hljs-title function_">findAll</span>(<span class="hljs-params"><span class="hljs-meta">@Query</span>(<span class="hljs-string">&#x27;page&#x27;</span>) page: <span class="hljs-built_in">string</span></span>) &#123;<br>  <span class="hljs-keyword">if</span> (!page) page = <span class="hljs-string">&#x27;1&#x27;</span><br>  <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">articleService</span>.<span class="hljs-title function_">findAll</span>(+page);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>只有具有管理员权限的用户才能调用该接口</p>
+</li>
+</ol>
+<h2 id="二十、文件上传接口"><a href="#二十、文件上传接口" class="headerlink" title="二十、文件上传接口"></a>二十、文件上传接口</h2><ol>
+<li><h3 id="创建-upload-模块和服务"><a href="#创建-upload-模块和服务" class="headerlink" title="创建 upload 模块和服务"></a>创建 upload 模块和服务</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">nest g mo upload<br>nest g co upload --no-spec<br>nest g s upload --no-spec<br></code></pre></td></tr></table></figure>
+</li>
+<li><h3 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">Global</span>, <span class="hljs-title class_">Module</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@nestjs/common&#x27;</span>;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">UploadService</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./upload.service&#x27;</span>;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">UploadController</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./upload.controller&#x27;</span>;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">MulterModule</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@nestjs/platform-express&#x27;</span>;<br><span class="hljs-keyword">import</span> &#123; diskStorage &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;multer&#x27;</span>;<br><span class="hljs-keyword">import</span> &#123; extname &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;path&#x27;</span>;<br><br><span class="hljs-meta">@Global</span>()<br><span class="hljs-meta">@Module</span>(&#123;<br>  <span class="hljs-attr">imports</span>: [<br>    <span class="hljs-title class_">MulterModule</span>.<span class="hljs-title function_">registerAsync</span>(&#123;<br>      <span class="hljs-title function_">useFactory</span>(<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-keyword">return</span> &#123;<br>          <span class="hljs-attr">storage</span>: <span class="hljs-title function_">diskStorage</span>(&#123;<br>            <span class="hljs-comment">//文件储存位置</span><br>            <span class="hljs-attr">destination</span>: <span class="hljs-string">&#x27;uploads&#x27;</span>,<br>            <span class="hljs-comment">//文件名定制</span><br>            <span class="hljs-attr">filename</span>: <span class="hljs-function">(<span class="hljs-params">req, file, callback</span>) =&gt;</span> &#123;<br>              <span class="hljs-keyword">const</span> path = <span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>() + <span class="hljs-string">&#x27;-&#x27;</span> + <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">round</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() * <span class="hljs-number">1e10</span>) + <span class="hljs-title function_">extname</span>(file.<span class="hljs-property">originalname</span>)<br>              <span class="hljs-title function_">callback</span>(<span class="hljs-literal">null</span>, path)<br>            &#125;,<br>          &#125;),<br>        &#125;<br>      &#125;,<br>    &#125;),<br>  ],<br>  <span class="hljs-attr">providers</span>: [<span class="hljs-title class_">UploadService</span>],<br>  <span class="hljs-attr">controllers</span>: [<span class="hljs-title class_">UploadController</span>]<br>&#125;)<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UploadModule</span> &#123; &#125;<br><br></code></pre></td></tr></table></figure>
+</li>
+<li><h3 id="控制器"><a href="#控制器" class="headerlink" title="控制器"></a>控制器</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">BadRequestException</span>, <span class="hljs-title class_">Controller</span>, <span class="hljs-title class_">Post</span>, <span class="hljs-title class_">UploadedFile</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@nestjs/common&#x27;</span>;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">Auth</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;src/auth/decorator/auth.decorator&#x27;</span>;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">DocUpload</span>, <span class="hljs-title class_">ImageUpload</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./decorator/upload.decorator&#x27;</span>;<br><br><span class="hljs-meta">@Controller</span>(<span class="hljs-string">&#x27;upload&#x27;</span>)<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UploadController</span> &#123;<br>    <span class="hljs-meta">@Post</span>(<span class="hljs-string">&#x27;image&#x27;</span>)<br>    <span class="hljs-meta">@Auth</span>()<br>    <span class="hljs-meta">@ImageUpload</span>()<br>    <span class="hljs-title function_">images</span>(<span class="hljs-params"><span class="hljs-meta">@UploadedFile</span>() file: Express.Multer.File</span>) &#123;<br>        <span class="hljs-keyword">if</span> (!file) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BadRequestException</span>(<span class="hljs-string">&quot;file不能为空&quot;</span>)<br>        &#125;<br>        <span class="hljs-keyword">return</span> file<br>    &#125;<br><br>    <span class="hljs-meta">@Post</span>(<span class="hljs-string">&#x27;doc&#x27;</span>)<br>    <span class="hljs-meta">@Auth</span>()<br>    <span class="hljs-meta">@DocUpload</span>()<br>    <span class="hljs-title function_">doc</span>(<span class="hljs-params"><span class="hljs-meta">@UploadedFile</span>() file: Express.Multer.File</span>) &#123;<br>        <span class="hljs-keyword">if</span> (!file) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BadRequestException</span>(<span class="hljs-string">&quot;file不能为空&quot;</span>)<br>        &#125;<br>        <span class="hljs-keyword">return</span> file<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+</li>
+<li><h3 id="文件上传聚合装饰器"><a href="#文件上传聚合装饰器" class="headerlink" title="文件上传聚合装饰器"></a>文件上传聚合装饰器</h3><p><code>upload.decorator.ts</code></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">import</span> &#123; applyDecorators, <span class="hljs-title class_">UnsupportedMediaTypeException</span>, <span class="hljs-title class_">UseInterceptors</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@nestjs/common&quot;</span>;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">FileInterceptor</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@nestjs/platform-express&quot;</span>;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">MulterOptions</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@nestjs/platform-express/multer/interfaces/multer-options.interface&quot;</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Upload</span>(<span class="hljs-params">fieldName = <span class="hljs-string">&quot;file&quot;</span>, option: MulterOptions = &#123;&#125;</span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-title function_">applyDecorators</span>(<span class="hljs-title class_">UseInterceptors</span>(<span class="hljs-title class_">FileInterceptor</span>(fieldName, option)))<br>&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">fileFilter</span>(<span class="hljs-params"><span class="hljs-keyword">type</span>: <span class="hljs-built_in">string</span></span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-function">(<span class="hljs-params">req: <span class="hljs-built_in">any</span>, file: Express.Multer.File, callback: (error: <span class="hljs-built_in">Error</span> | <span class="hljs-literal">null</span>, acceptFile: <span class="hljs-built_in">boolean</span>) =&gt; <span class="hljs-built_in">void</span></span>) =&gt;</span> &#123;<br>        <span class="hljs-keyword">if</span> (!file.<span class="hljs-property">mimetype</span>.<span class="hljs-title function_">includes</span>(<span class="hljs-keyword">type</span>)) &#123;<br>            <span class="hljs-title function_">callback</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">UnsupportedMediaTypeException</span>(<span class="hljs-string">&#x27;文件类型错误&#x27;</span>), <span class="hljs-literal">false</span>)<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-title function_">callback</span>(<span class="hljs-literal">null</span>, <span class="hljs-literal">true</span>)<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">ImageUpload</span>(<span class="hljs-params">fieldName = <span class="hljs-string">&#x27;file&#x27;</span></span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Upload</span>(fieldName, &#123;<br>        <span class="hljs-attr">fileFilter</span>: <span class="hljs-title function_">fileFilter</span>(<span class="hljs-string">&#x27;image&#x27;</span>)<br>    &#125;)<br>&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">DocUpload</span>(<span class="hljs-params">fieldName = <span class="hljs-string">&#x27;file&#x27;</span></span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Upload</span>(fieldName, &#123;<br>        <span class="hljs-attr">fileFilter</span>: <span class="hljs-title function_">fileFilter</span>(<span class="hljs-string">&#x27;document&#x27;</span>)<br>    &#125;)<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><h3 id="设置静态目录"><a href="#设置静态目录" class="headerlink" title="设置静态目录"></a>设置静态目录</h3><p><code>main.ts</code></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">// ...</span><br><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">bootstrap</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">await</span> <span class="hljs-title class_">NestFactory</span>.<span class="hljs-property">create</span>&lt;<span class="hljs-title class_">NestExpressApplication</span>&gt;(<span class="hljs-title class_">AppModule</span>);<br>  <span class="hljs-comment">// ...</span><br>  <span class="hljs-comment">// 静态目录</span><br>  app.<span class="hljs-title function_">useStaticAssets</span>(<span class="hljs-string">&#x27;uploads&#x27;</span>, &#123; <span class="hljs-attr">prefix</span>: <span class="hljs-string">&#x27;/uploads&#x27;</span> &#125;)<br>  <span class="hljs-comment">// ...</span><br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><h3 id="接口测试-13"><a href="#接口测试-13" class="headerlink" title="接口测试"></a>接口测试</h3><p><img src="https://i.imgur.com/E7RF5vQ.png" srcset="/img/loading.gif" lazyload alt="image-20221027143531957"></p>
+</li>
+</ol>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>这个项目的视频课是在9月中买的，其中断断续续跟着视频做，后来意识到我只是跟着视频做的话，很快就没什么印象了（虽然写了这篇文章记录后还是一样会忘掉），而且这里里面的很多代码其实写了之后就不会动的了，所以我把他记录下来，方便下次来抄。不管这个项目的质量怎样，起码这是我做的第一个后端项目，也算是跨出了第一步。</p>
+<p>写这个项目的时候我还是要一边跟着视频一边抄，因为我对 TypeScript 和 MySQL 不熟悉，并且在我还没买这套视频前，自己也试了一下按照网上别人的博客来做了一下简单的 Nest.JS 功能。功能实现倒是实现了，但是也踩了不少坑。在某一天早上坐地铁上班时，我意外的发现了这个视频教程，价格不贵，日期也新鲜，就买了。</p>
+<p>跟着视频做确实轻松了不少，坑也少踩了好多。但是这并不意味着你只要对着视频复制粘贴就能学会的，改动脑子的时候就要动脑子。我在培训的时候就已经留意到了很多人的心态是不正常的。妄想着自己给了钱，交了学费后出来就能月入过万。不能自己主动的学习，神仙教你也不行。写到这里有点语无伦次了，总之就是要能自我驱动，提升自己的能力吧。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%AD%A6%E4%B9%A0/">#学习</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Nest.JS 博客后端学习记录</div>
+      <div>https://hchow.fun/2022/10/12/nest-blog-learning/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>hchow</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年10月12日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/11/28/mswDemo/" title="Vue3 + Vite + TypeScript 的 Mock Service Worker 使用">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Vue3 + Vite + TypeScript 的 Mock Service Worker 使用</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/10/08/typora-use-picgo-upload-image/" title="Typora 调用 PicGo 上传图片到图床">
+                        <span class="hidden-mobile">Typora 调用 PicGo 上传图片到图床</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"6ee781411c4c57dc0fb1","clientSecret":"7566b4496981ee7cc707c4bb8b387b538aede35e","repo":"hexoComment","owner":"sdrpsps","admin":["sdrpsps"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: '4c0057836cfdf61bdef31edacada7376'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
