@@ -18,31 +18,22 @@
   <meta name="author" content="hchow">
   <meta name="keywords" content="">
   
-    <meta name="description" content="今天心血来潮想用一下 Typora 自带的功能，毕竟是 (尊贵的) 正版用户，不用白不用了～ 妈的，写完才发现 Gitee 防盗链了。现在用自建兰空图床去了～">
+    <meta name="description" content="TypeScript 查漏补缺   声明对象类型时，如果不确定对象属性的数量时 1234567&#x2F;&#x2F; propName 代表剩余的属性名为 String 类型，值为 Anylet c: &amp;#123;name: string, [propName: string]: any&amp;#125;c &#x3D; &amp;#123;  name: &amp;#x27;呵呵&amp;#x27;,  age: 18,  gender: &amp;#x27">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Typora 调用 PicGo 上传图片到图床">
-<meta property="og:url" content="https://hchow.fun/2022/10/08/typora-use-picgo-upload-image/index.html">
+<meta property="og:title" content="TypeScript 查漏补缺">
+<meta property="og:url" content="https://hchow.fun/2023/01/09/TypeScript-%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA/index.html">
 <meta property="og:site_name" content="周生&#39;s Blog">
-<meta property="og:description" content="今天心血来潮想用一下 Typora 自带的功能，毕竟是 (尊贵的) 正版用户，不用白不用了～ 妈的，写完才发现 Gitee 防盗链了。现在用自建兰空图床去了～">
+<meta property="og:description" content="TypeScript 查漏补缺   声明对象类型时，如果不确定对象属性的数量时 1234567&#x2F;&#x2F; propName 代表剩余的属性名为 String 类型，值为 Anylet c: &amp;#123;name: string, [propName: string]: any&amp;#125;c &#x3D; &amp;#123;  name: &amp;#x27;呵呵&amp;#x27;,  age: 18,  gender: &amp;#x27">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://i.imgur.com/TjfkwW7.png">
-<meta property="og:image" content="https://i.imgur.com/MNrCBGP.png">
-<meta property="og:image" content="https://i.imgur.com/TR5lnDt.png">
-<meta property="og:image" content="https://i.imgur.com/R3b7zTL.png">
-<meta property="og:image" content="https://i.imgur.com/QHVajxf.png">
-<meta property="og:image" content="https://i.imgur.com/lf0IWhl.png">
-<meta property="og:image" content="https://i.imgur.com/Fn0PvG6.png">
-<meta property="og:image" content="https://i.imgur.com/gE25tjx.png">
-<meta property="article:published_time" content="2022-10-08T08:06:43.000Z">
-<meta property="article:modified_time" content="2023-01-06T06:01:35.699Z">
+<meta property="article:published_time" content="2023-01-09T07:33:24.000Z">
+<meta property="article:modified_time" content="2023-01-09T07:35:38.344Z">
 <meta property="article:author" content="hchow">
-<meta property="article:tag" content="教程">
+<meta property="article:tag" content="学习">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://i.imgur.com/TjfkwW7.png">
   
   
   
-  <title>Typora 调用 PicGo 上传图片到图床 - 周生&#39;s Blog</title>
+  <title>TypeScript 查漏补缺 - 周生&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -207,7 +198,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Typora 调用 PicGo 上传图片到图床"></span>
+            <span id="subtitle" data-typed-text="TypeScript 查漏补缺"></span>
           
         </div>
 
@@ -218,8 +209,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-10-08 16:06" pubdate>
-          2022年10月8日 下午
+        <time datetime="2023-01-09 15:33" pubdate>
+          2023年1月9日 下午
         </time>
       </span>
     
@@ -230,7 +221,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          529 字
+          1.1k 字
         
       </span>
     
@@ -270,47 +261,40 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Typora 调用 PicGo 上传图片到图床</h1>
+            <h1 style="display: none">TypeScript 查漏补缺</h1>
             
             
               <div class="markdown-body">
                 
                 <blockquote>
-<p>今天心血来潮想用一下 Typora 自带的功能，毕竟是 <del>(尊贵的)</del> 正版用户，不用白不用了～</p>
-<p>妈的，写完才发现 Gitee 防盗链了。现在用自建兰空图床去了～</p>
+<p>TypeScript 查漏补缺</p>
 </blockquote>
-<span id="more"></span>
-
-<h2 id="一、安装-PicGo"><a href="#一、安装-PicGo" class="headerlink" title="一、安装 PicGo"></a>一、安装 PicGo</h2><p>因为我用的是 Mac ，所以我直接就用 HomeBrew 安装了 <code>brew install picgo</code> ，Windows 用户执行去官网下载就好。</p>
-<h2 id="二、Gitee-配置"><a href="#二、Gitee-配置" class="headerlink" title="二、Gitee 配置"></a><del>二、Gitee 配置</del></h2><ol>
-<li><del>新建仓库用于存储图片，建议把下面初始化，因为现在是私有仓库<img src="https://i.imgur.com/TjfkwW7.png" srcset="/img/loading.gif" lazyload alt="image-20221008161714901"></del></li>
-<li><del>将仓库转为公共仓库，点击右上角的管理，拉到最底，保存<img src="https://i.imgur.com/MNrCBGP.png" srcset="/img/loading.gif" lazyload alt="image-20221008162036383"></del></li>
-<li><del>点击头像，进入设置</del></li>
-<li><del>在侧边栏的安全设置，点击私人令牌<img src="https://i.imgur.com/TR5lnDt.png" srcset="/img/loading.gif" lazyload alt="image-20221008162214797"></del></li>
-<li><del>点击生成新令牌<img src="https://i.imgur.com/R3b7zTL.png" srcset="/img/loading.gif" lazyload alt="image-20221008162253140"></del></li>
-<li><del>全选，提交</del></li>
-<li><del>复制私人令牌，只会出现一次，注意保存，后续会用上<img src="https://i.imgur.com/QHVajxf.png" srcset="/img/loading.gif" lazyload alt="image-20221008162445826"></del></li>
-</ol>
-<h2 id="三、PicGo-配置"><a href="#三、PicGo-配置" class="headerlink" title="三、PicGo 配置"></a><del>三、PicGo 配置</del></h2><ol>
-<li><del>来到 PicGo 主界面，在左侧导航栏的插件设置，安装如图插件<img src="https://i.imgur.com/lf0IWhl.png" srcset="/img/loading.gif" lazyload alt="image-20221008162758296"></del></li>
-<li><del>安装完后，在图床设置打开 gitee</del></li>
-<li><del>如图设置<img src="https://i.imgur.com/Fn0PvG6.png" srcset="/img/loading.gif" lazyload alt="image-20221008162949494"></del></li>
-<li><del>repo 为你的仓库名称，可以直接复制 URL 的来</del></li>
-<li><del>branch 直接填 master 就行</del></li>
-<li><del>token 就是刚才新建的私人令牌</del></li>
-<li><del>path 是上传的路径，按个人喜好来</del></li>
-<li><del>点击确定并设置为默认图床</del></li>
-</ol>
-<h2 id="四、Typora-配置"><a href="#四、Typora-配置" class="headerlink" title="四、Typora 配置"></a>四、Typora 配置</h2><ol>
-<li>打开偏好设置</li>
-<li>点击图像</li>
-<li>插入图片时选择上传，上传服务选择 PicGo <img src="https://i.imgur.com/gE25tjx.png" srcset="/img/loading.gif" lazyload alt="image-20221008163242556"></li>
-<li>Windows 用户还要设置 PicGo 的路径</li>
-<li>然后点击旁边的验证图片上传选项</li>
-<li>没报错就配置完成了</li>
-<li>可以自己试一下截图粘贴看看效果</li>
-<li><del>这篇文章的图片就是这样来的～</del></li>
-</ol>
+<ul>
+<li><p>声明对象类型时，如果不确定对象属性的数量时</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">// propName 代表剩余的属性名为 String 类型，值为 Any</span><br><span class="hljs-keyword">let</span> <span class="hljs-attr">c</span>: &#123;<span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>, [<span class="hljs-attr">propName</span>: <span class="hljs-built_in">string</span>]: <span class="hljs-built_in">any</span>&#125;<br>c = &#123;<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;呵呵&#x27;</span>,<br>  <span class="hljs-attr">age</span>: <span class="hljs-number">18</span>,<br>  <span class="hljs-attr">gender</span>: <span class="hljs-string">&#x27;男&#x27;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><code>tsconfig.json</code></p>
+<ul>
+<li><code>include</code> 用来指定哪些 ts 文件需要编译</li>
+<li><code>exclude</code> 用来指定哪些 ts 文件不需要编译，默认存在 <code>node_module</code></li>
+<li><code>compilerOptions</code> 用来指定编译选项<ul>
+<li><code>module</code> 指定要使用模块化的规范</li>
+<li><code>outDir</code> 指定编译后文件所在的目录</li>
+<li><code>outFile</code> 将代码合并为一个文件，设置后，所有的全局作用域的代码会合并到同一个文件中</li>
+<li><code>allowJs</code> 是否对 JS 文件进行编译，默认是 false</li>
+<li><code>checkJs</code> 是否检查 JS 语法，默认是 false</li>
+<li><code>removeComments</code> 是否移除注释</li>
+<li><code>noEmit</code> 不生成编译后的文件</li>
+<li><code>noEmitOnError</code> 当有错误时，不生成编译文件</li>
+<li><code>alwayStrict</code> 用来设置编译后的文件是否使用严格模式</li>
+<li><code>noImplicitAny</code> 不允许隐式 any</li>
+<li><code>noImplicitThis</code> 不允许不明确类型 this</li>
+<li><code>strictNullCheck</code> 严格的检查空值</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;include&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>    <span class="hljs-string">&quot;./src/**/*&quot;</span><br>  <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;exclude&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>    <span class="hljs-string">&quot;./src/hello/**/*&quot;</span><br>  <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;compilerOptions&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;target&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;es6&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;module&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;es6&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;outDir&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;./dist&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;allowJs&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;checkJs&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;removeComments&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;noEmit&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;noEmitOnError&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;alwayStrict&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;noImplicitAny&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;noImplicitThis&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;strictNullCheck&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure></li>
+</ul>
 
                 
               </div>
@@ -323,7 +307,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E6%95%99%E7%A8%8B/">#教程</a>
+        <a href="/tags/%E5%AD%A6%E4%B9%A0/">#学习</a>
       
     </div>
   
@@ -335,8 +319,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Typora 调用 PicGo 上传图片到图床</div>
-      <div>https://hchow.fun/2022/10/08/typora-use-picgo-upload-image/</div>
+      <div>TypeScript 查漏补缺</div>
+      <div>https://hchow.fun/2023/01/09/TypeScript-查漏补缺/</div>
     </div>
     <div class="license-meta">
       
@@ -348,7 +332,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年10月8日</div>
+          <div>2023年1月9日</div>
         </div>
       
       
@@ -380,18 +364,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/10/12/nest-blog-learning/" title="Nest.JS 博客后端学习记录">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Nest.JS 博客后端学习记录</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/08/16/ZN-M180G-PPPoE/" title="移动 ZN-M180G 光猫 获取 PPPOE 信息">
-                        <span class="hidden-mobile">移动 ZN-M180G 光猫 获取 PPPOE 信息</span>
+                      <a href="/2022/11/28/mswDemo/" title="Vue3 + Vite + TypeScript 的 Mock Service Worker 使用">
+                        <span class="hidden-mobile">Vue3 + Vite + TypeScript 的 Mock Service Worker 使用</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -412,7 +390,7 @@
         var options = Object.assign(
           {"clientID":"6ee781411c4c57dc0fb1","clientSecret":"7566b4496981ee7cc707c4bb8b387b538aede35e","repo":"sdrpsps.github.io","owner":"sdrpsps","admin":["sdrpsps"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
           {
-            id: '63a7cb43278fd4f0394ba89953a980e4'
+            id: 'b29cadf62f304f384d63954f2f21b541'
           }
         )
         var gitalk = new Gitalk(options);
